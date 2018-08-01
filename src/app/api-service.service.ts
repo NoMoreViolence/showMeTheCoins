@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
 
 import { CoinUnit } from 'src/interfaces';
 import { concat, makeArray } from 'src/functions';
@@ -17,7 +18,7 @@ class ApiServiceService {
   // 검색 Input
   searchInput = '';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private toast: ToastrService) {}
 
   changeInput(inputData: string): void {
     this.searchInput = inputData;
@@ -44,9 +45,11 @@ class ApiServiceService {
         // 로딩 완료
         this.pending = false;
 
+        this.toast.success('환영합니다 !');
         console.log('코인 데이터: ', this.allCoinData);
       },
       (err: Error): void => {
+        this.toast.error('이런.. 인터넷 연결을 확인해 주세요 !');
         console.log('초기 데이터 로딩 에러!');
         console.log(err.message);
       }
