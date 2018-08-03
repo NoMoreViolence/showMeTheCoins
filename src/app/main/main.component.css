@@ -6,16 +6,58 @@
   justify-content: space-between;
 }
 
+.main-logo-container {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.main-image-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.main-image > img {
+  -webkit-animation: blink 0.7s ease-in-out infinite alternate;
+  -moz-animation: blink 0.7s ease-in-out infinite alternate;
+  animation: blink 0.7s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes blink {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@-moz-keyframes blink {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes blink {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
 /* iphone SE */
 /* very small mobie view */
 /* Reactive font size */
 @media only screen and (min-width: 0px) and (max-width: 320px) {
-  .main-logo-container {
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-  }
-
   .main-logo {
     margin-top: 30vh;
     width: 75%;
@@ -30,12 +72,6 @@
     font-family: AvenirNext-Bold;
   }
 
-  .main-image-container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-  }
-
   .main-image {
     width: 100%;
     display: flex;
@@ -46,54 +82,12 @@
   .main-image > img {
     width: 15%;
   }
-
-  .main-image > img:hover {
-    -webkit-animation: blink 0.5s ease-in-out infinite alternate;
-    -moz-animation: blink 0.5s ease-in-out infinite alternate;
-    animation: blink 0.5s ease-in-out infinite alternate;
-  }
-
-  @-webkit-keyframes blink {
-    0% {
-      opacity: 0;
-    }
-
-    100% {
-      opacity: 1;
-    }
-  }
-
-  @-moz-keyframes blink {
-    0% {
-      opacity: 0;
-    }
-
-    100% {
-      opacity: 1;
-    }
-  }
-
-  @keyframes blink {
-    0% {
-      opacity: 0;
-    }
-
-    100% {
-      opacity: 1;
-    }
-  }
 }
 
 /* iphone 6 7 8, galaxy S5 */
 /* small mobie view */
 /* Reactive font size */
 @media only screen and (min-width: 321px) and (max-width: 375px) {
-  .main-logo-container {
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-  }
-
   .main-logo {
     margin-top: 30vh;
     width: 70%;
@@ -108,12 +102,6 @@
     font-family: AvenirNext-Bold;
   }
 
-  .main-image-container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-  }
-
   .main-image {
     width: 100%;
     display: flex;
@@ -124,54 +112,12 @@
   .main-image > img {
     width: 15%;
   }
-
-  .main-image > img:hover {
-    -webkit-animation: blink 0.5s ease-in-out infinite alternate;
-    -moz-animation: blink 0.5s ease-in-out infinite alternate;
-    animation: blink 0.5s ease-in-out infinite alternate;
-  }
-
-  @-webkit-keyframes blink {
-    0% {
-      opacity: 0;
-    }
-
-    100% {
-      opacity: 1;
-    }
-  }
-
-  @-moz-keyframes blink {
-    0% {
-      opacity: 0;
-    }
-
-    100% {
-      opacity: 1;
-    }
-  }
-
-  @keyframes blink {
-    0% {
-      opacity: 0;
-    }
-
-    100% {
-      opacity: 1;
-    }
-  }
 }
 
 /* iphone 6+, 7+, 8+, galaxy Note, Nexus 5X */
 /* large mobie view */
 /* Reactive font size */
 @media only screen and (min-width: 376px) and (max-width: 425px) {
-  .main-logo-container {
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-  }
-
   .main-logo {
     margin-top: 30vh;
     width: 70%;
@@ -186,12 +132,6 @@
     font-family: AvenirNext-Bold;
   }
 
-  .main-image-container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-  }
-
   .main-image {
     width: 100%;
     display: flex;
@@ -202,52 +142,10 @@
   .main-image > img {
     width: 15%;
   }
-
-  .main-image > img:hover {
-    -webkit-animation: blink 0.5s ease-in-out infinite alternate;
-    -moz-animation: blink 0.5s ease-in-out infinite alternate;
-    animation: blink 0.5s ease-in-out infinite alternate;
-  }
-
-  @-webkit-keyframes blink {
-    0% {
-      opacity: 0;
-    }
-
-    100% {
-      opacity: 1;
-    }
-  }
-
-  @-moz-keyframes blink {
-    0% {
-      opacity: 0;
-    }
-
-    100% {
-      opacity: 1;
-    }
-  }
-
-  @keyframes blink {
-    0% {
-      opacity: 0;
-    }
-
-    100% {
-      opacity: 1;
-    }
-  }
 }
 
 /* tablet */
 @media only screen and (min-width: 426px) and (max-width: 768px) {
-  .main-logo-container {
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-  }
-
   .main-logo {
     margin-top: 30vh;
     width: 65%;
@@ -262,12 +160,6 @@
     font-family: AvenirNext-Bold;
   }
 
-  .main-image-container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-  }
-
   .main-image {
     width: 100%;
     display: flex;
@@ -278,55 +170,11 @@
   .main-image > img {
     width: 7%;
   }
-
-  .main-image > img:hover {
-    -webkit-animation: blink 0.5s ease-in-out infinite alternate;
-    -moz-animation: blink 0.5s ease-in-out infinite alternate;
-    animation: blink 0.5s ease-in-out infinite alternate;
-  }
-
-  @-webkit-keyframes blink {
-    0% {
-      opacity: 0;
-    }
-
-    100% {
-      opacity: 1;
-    }
-  }
-
-  @-moz-keyframes blink {
-    0% {
-      opacity: 0;
-    }
-
-    100% {
-      opacity: 1;
-    }
-  }
-
-  @keyframes blink {
-    0% {
-      opacity: 0;
-    }
-
-    100% {
-      opacity: 1;
-    }
-  }
 }
 
 /* laptop */
 @media only screen and (min-width: 769px) and (max-width: 1024px) {
   /* each post box */
-
-
-  .main-logo-container {
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-  }
-
   .main-logo {
     margin-top: 30vh;
     width: 55%;
@@ -341,12 +189,6 @@
     font-family: AvenirNext-Bold;
   }
 
-  .main-image-container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-  }
-
   .main-image {
     width: 100%;
     display: flex;
@@ -357,53 +199,11 @@
   .main-image > img {
     width: 5%;
   }
-
-  .main-image > img:hover {
-    -webkit-animation: blink 0.5s ease-in-out infinite alternate;
-    -moz-animation: blink 0.5s ease-in-out infinite alternate;
-    animation: blink 0.5s ease-in-out infinite alternate;
-  }
-
-  @-webkit-keyframes blink {
-    0% {
-      opacity: 0;
-    }
-
-    100% {
-      opacity: 1;
-    }
-  }
-
-  @-moz-keyframes blink {
-    0% {
-      opacity: 0;
-    }
-
-    100% {
-      opacity: 1;
-    }
-  }
-
-  @keyframes blink {
-    0% {
-      opacity: 0;
-    }
-
-    100% {
-      opacity: 1;
-    }
-  }
 }
 
 /* default desktop */
 @media only screen and (min-width: 1025px) and (max-width: 1680px) {
   /* each post box */
-  .main-logo-container {
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-  }
-
   .main-logo {
     margin-top: 30vh;
     width: 55%;
@@ -418,12 +218,6 @@
     font-family: AvenirNext-Bold;
   }
 
-  .main-image-container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-  }
-
   .main-image {
     width: 100%;
     display: flex;
@@ -434,53 +228,11 @@
   .main-image > img {
     width: 5%;
   }
-
-  .main-image > img:hover {
-    -webkit-animation: blink 0.5s ease-in-out infinite alternate;
-    -moz-animation: blink 0.5s ease-in-out infinite alternate;
-    animation: blink 0.5s ease-in-out infinite alternate;
-  }
-
-  @-webkit-keyframes blink {
-    0% {
-      opacity: 0;
-    }
-
-    100% {
-      opacity: 1;
-    }
-  }
-
-  @-moz-keyframes blink {
-    0% {
-      opacity: 0;
-    }
-
-    100% {
-      opacity: 1;
-    }
-  }
-
-  @keyframes blink {
-    0% {
-      opacity: 0;
-    }
-
-    100% {
-      opacity: 1;
-    }
-  }
 }
 
 /* for 4K display */
 @media only screen and (min-width: 1681px) {
   /* each post box */
-  .main-logo-container {
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-  }
-
   .main-logo {
     margin-top: 30vh;
     width: 55%;
@@ -495,12 +247,6 @@
     font-family: AvenirNext-Bold;
   }
 
-  .main-image-container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-  }
-
   .main-image {
     width: 100%;
     display: flex;
@@ -510,41 +256,5 @@
 
   .main-image > img {
     width: 7%;
-  }
-
-  .main-image > img:hover {
-    -webkit-animation: blink 0.5s ease-in-out infinite alternate;
-    -moz-animation: blink 0.5s ease-in-out infinite alternate;
-    animation: blink 0.5s ease-in-out infinite alternate;
-  }
-
-  @-webkit-keyframes blink {
-    0% {
-      opacity: 0;
-    }
-
-    100% {
-      opacity: 1;
-    }
-  }
-
-  @-moz-keyframes blink {
-    0% {
-      opacity: 0;
-    }
-
-    100% {
-      opacity: 1;
-    }
-  }
-
-  @keyframes blink {
-    0% {
-      opacity: 0;
-    }
-
-    100% {
-      opacity: 1;
-    }
   }
 }
