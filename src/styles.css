@@ -1,4 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~ngx-toastr/toastr.css';
+
 html,
 body {
   margin: 0;
@@ -12,4 +14,13 @@ html {
   -o-background-size: cover;
   background-size: cover;
   font-family: 'Roboto', sans-serif;
+}
+
+.app {
+  width: 100%;
+}
+
+.footer {
+  background: white;
+  margin-top: auto;
 }
