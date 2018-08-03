@@ -5,3 +5,17 @@
   flex-direction: column;
   align-items: center;
 }
+
+.main-router-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main-app {
+  width: 100%;
+}
+
+.white {
+  background: white;
+}

@@ -1,6 +1,8 @@
 <div class="main-container">
-  <app-main class="app"></app-main>
-  <app-search-bar class="app"></app-search-bar>
-  <router-outlet class="app white"></router-outlet>
-  <app-under class="app footer"></app-under>
+  <app-main class="main-app"></app-main>
+  <div class="main-app main-router-container white">
+    <app-search-bar class="main-app"></app-search-bar>
+    <router-outlet class="main-app"></router-outlet>
+    <app-under class="main-app footer"></app-under>
+  </div>
 </div>
