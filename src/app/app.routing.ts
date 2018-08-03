@@ -7,7 +7,7 @@ import { CoinsComponent } from './coins/coins.component';
 export const routes: Routes = [
   { path: '', redirectTo: '/coins', pathMatch: 'full' },
   { path: 'coins', component: CoinsComponent },
-  { path: 'coins/:page', component: SelectedComponent },
+  { path: 'coins/:coin', component: SelectedComponent },
   { path: '**', redirectTo: '/coins', pathMatch: 'full' } // Wrong url redirect
 ];
 
