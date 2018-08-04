@@ -1,55 +1,77 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { ToastrService } from 'ngx-toastr';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { ViewportScroller } from '@angular/common';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 import { CoinUnit } from 'src/interfaces';
 import { concat, makeArray } from 'src/functions';
 
 @Injectable()
 class Store {
-  // 모든 코인 데이터 담는 공간
+  // All coin data
   allCoinData: CoinUnit[] = [];
-  // 코인 데이터 불러오는 시작값
-  loaded = 1;
-  // 코인 데이터 요청 시 pending 값
+  // Sorted coin data
+  sortedCoinData: CoinUnit[] = [];
+  // request coin number
+  public loaded = 1;
+  // Request pending value
   pending = false;
-  // 코인 데이터 더 불러오기 버튼, loaded가 1000이 넘을 경우 자동 비활성화
+  // Request button, if user get all coin value, Become button that can not be clicked
   showMoreButton = true;
-  // 검색 Input
+  // Search input
   searchInput = '';
+  // Scroll value
+  scroll: [number, number] | null = null;
 
-  constructor(private http: HttpClient, private toast: ToastrService, private router: Router) {}
+  constructor(
+    private http: HttpClient,
+    private toast: ToastrService,
+    private router: Router,
+    private viewportScroller: ViewportScroller
+  ) {}
 
   // Toast Message
-  giveMessage(message: string, type: string) {
+  giveMessage(message: string, type: string): void {
     this.toast[type](message);
-  }
-
-  // Change search bar input
-  changeInput(event: any): void {
-    this.searchInput = event.target.value;
-
-    if (event.keyCode === 13 && this.searchInput !== '') {
-      this.goToSomeWhere(this.searchInput);
-    }
   }
 
   // Change URL method
   goToSomeWhere(location?: string) {
-    if (!location) {
-      return this.router.navigateByUrl('/coins');
-    }
-    return this.router.navigateByUrl(`coins/${location}`);
+    this.getCurrentScroll();
+    // Location
+    const Location = location ? `/${location}` : '';
+    // First, Change Url, Second, set scroll before click the link or enter
+    this.router.navigateByUrl(`coins${Location}`).then(() => this.setScroll(this.scroll));
   }
 
-  // Get coins
-  getCoins(startNumber?: number) {
-    return this.http.get(`https://api.coinmarketcap.com/v2/ticker/?convert=KRW&start=${startNumber || 1}`);
+  // Get current scroll value
+  getCurrentScroll(): void {
+    this.scroll = this.viewportScroller.getScrollPosition();
+  }
+
+  // Setting scroll value
+  setScroll(value: [number, number]): void {
+    this.viewportScroller.scrollToPosition(value);
+  }
+
+  // Change search bar input
+  changeInput(event: any): void {
+    // Input change
+    this.searchInput = event.target.value;
+    // Sort data
+    this.sortCoinData();
+    // If user click enter key, go to coins component
+    if (event.keyCode === 13 && this.searchInput !== '') {
+      this.goToSomeWhere();
+    }
   }
 
   // Load coin data
   loadCoinData(message?: string) {
+    if (this.pending === true) {
+      return this.giveMessage('코인 데이터 요청 중 입니다 ! 잠시만 기다려주세요', 'info');
+    }
     // Pending
     this.pending = true;
 
@@ -58,7 +80,9 @@ class Store {
       (data: { data }): void => {
         // Add coin data
         this.allCoinData = concat([this.allCoinData, makeArray(data.data)]);
-        // Pending
+
+        this.sortCoinData();
+        // Loaded
         this.pending = false;
         // Up load count
         this.loaded += 100;
@@ -67,11 +91,33 @@ class Store {
           this.giveMessage(message, 'success');
         }
       },
-      (err: Error): void => {
-        this.giveMessage('이런.. 인터넷 연결을 확인해 주세요 !', 'error');
+      (err: HttpErrorResponse): void => {
+        // Loaded
+        this.pending = false;
+
+        // Error handle
+        if (err.status === 404) {
+          this.showMoreButton = false;
+          this.giveMessage('더이상 가져올 수 있는 코인 데이터가 존재하지 않습니다 !', 'error');
+        }
+        if (err.status === 0) {
+          this.giveMessage('인터넷 연결 문제가 발생했습니다 !', 'error');
+        }
+
         console.log(err.message);
       }
     );
+  }
+
+  sortCoinData() {
+    this.sortedCoinData = this.allCoinData.filter(
+      (object: CoinUnit) => object.symbol.toLowerCase().indexOf(this.searchInput.toLowerCase()) > -1
+    );
+  }
+
+  // Get coins
+  getCoins(startNumber?: number) {
+    return this.http.get(`https://api.coinmarketcap.com/v2/ticker/?convert=KRW&start=${startNumber || 1}`);
   }
 }
 
