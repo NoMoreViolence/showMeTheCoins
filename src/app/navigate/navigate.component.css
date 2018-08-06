@@ -1,0 +1,57 @@
+
+/* iphone SE */
+/* very small mobie view */
+/* Reactive font size */
+@media only screen and (min-width: 0px) and (max-width: 320px) {
+  .menu-table {
+    width: 100%;
+    padding-top: 1rem;
+  }
+
+  .menu-thead {
+    width: 100%;
+  }
+
+  .menu-tr {
+    width: 100%;
+    display: flex;
+  }
+
+  .menu-tr th {
+    flex: 1;
+    text-align: center;
+    padding: 8px;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+  }
+}
+
+
+/* iphone 6 7 8, galaxy S5 */
+/* small mobie view */
+/* Reactive font size */
+@media only screen and (min-width: 321px) and (max-width: 375px) {
+}
+
+/* iphone 6+, 7+, 8+, galaxy Note, Nexus 5X */
+/* large mobie view */
+/* Reactive font size */
+@media only screen and (min-width: 376px) and (max-width: 425px) {
+}
+
+/* tablet */
+@media only screen and (min-width: 426px) and (max-width: 768px) {
+}
+
+/* laptop */
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+}
+
+/* default desktop */
+@media only screen and (min-width: 1025px) and (max-width: 1440px) {
+}
+
+/* for 4K display */
+@media only screen and (min-width: 1441px) {
+
+}
