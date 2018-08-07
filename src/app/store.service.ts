@@ -40,49 +40,60 @@ class Store {
     this.toast[type](message);
   }
 
+  // Go to prev page
   goToPrevPage() {
-    console.log('goToPrevPage');
-    console.log(this.url[this.urlNumber - 1]);
-
-    if (this.url[this.urlNumber - 1 || 0]) {
-      this.urlNumber -= 1;
-      return this.goToSomeWhere(this.url[this.urlNumber], 'hello');
+    if (!this.url[this.urlNumber - 1]) {
+      return this.giveMessage('There is no prev page !', 'info');
     }
 
-    this.giveMessage('There is no prev page', 'info');
-  }
-
-  // Change URL method
-  goToSomeWhere(location?: string, oldWay?: string) {
-    // Location
-    const nextLocation = location ? location : '/coins';
+    this.urlNumber -= 1;
+    // Get current scroll value
     this.getCurrentScroll();
-
-    console.log(nextLocation);
-
-    if (!oldWay) {
-      this.url.length = this.urlNumber;
-      // this.url[this.urlNumber] = this.router.url;
-      // this.url.splice(t);
-      this.url[this.urlNumber + 1 || 0] = nextLocation;
-      this.urlNumber += 1;
-    }
-    // First, Change Url, Second, set scroll before click the link or enter
-    this.router.navigateByUrl(`${nextLocation}`).then(() => {
+    // First, Change Url, Second, set scroll before url moved, Third, change url array info
+    this.router.navigateByUrl(this.url[this.urlNumber || 0]).then(() => {
+      // set scroll
       this.setScroll(this.scroll);
     });
   }
 
-  goToNextPage() {
-    console.log('goToNextPage');
-    console.log(this.url[this.urlNumber + 1]);
+  // Change URL method
+  goToSomeWhere(location?: string, oldWay?: string) {
+    // Bring current url value
+    this.url[this.urlNumber || 0] = this.router.url;
 
-    if (this.url[this.urlNumber + 1]) {
-      this.urlNumber += 1;
-      return this.goToSomeWhere(this.url[this.urlNumber], 'hello');
+    // To Location
+    const nextLocation = location ? location : '/coins';
+
+    if (nextLocation !== this.url[this.urlNumber]) {
+      // Get current scroll value
+      this.getCurrentScroll();
+      // First, Change Url, Second, set scroll before url moved, Third, change url array info
+      this.router.navigateByUrl(`${nextLocation}`).then(() => {
+        // set scroll
+        this.setScroll(this.scroll);
+        // set current url
+        this.urlNumber += 1;
+        this.url[this.urlNumber || 0] = this.router.url;
+        // reset next url infomation
+        this.url.length = this.urlNumber + 1;
+      });
+    }
+  }
+
+  // Go to next page
+  goToNextPage() {
+    if (!this.url[this.urlNumber + 1]) {
+      return this.giveMessage('There is no next page !', 'info');
     }
 
-    this.giveMessage('There is no next page', 'info');
+    this.urlNumber += 1;
+    // Get current scroll value
+    this.getCurrentScroll();
+    // First, Change Url, Second, set scroll before url moved, Third, change url array info
+    this.router.navigateByUrl(this.url[this.urlNumber || 0]).then(() => {
+      // set scroll
+      this.setScroll(this.scroll);
+    });
   }
 
   // Get current scroll value
