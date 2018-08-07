@@ -10,19 +10,23 @@ import { concat, makeArray } from 'src/functions';
 @Injectable()
 class Store {
   // All coin data
-  allCoinData: CoinUnit[] = [];
+  public allCoinData: CoinUnit[] = [];
   // Sorted coin data
-  sortedCoinData: CoinUnit[] = [];
+  public sortedCoinData: CoinUnit[] = [];
   // request coin number
   public loaded = 1;
   // Request pending value
-  pending = false;
+  public pending = false;
   // Request button, if user get all coin value, Become button that can not be clicked
-  showMoreButton = true;
+  public showMoreButton = true;
   // Search input
-  searchInput = '';
+  public searchInput = '';
   // Scroll value
-  scroll: [number, number] | null = null;
+  public scroll: [number, number] | null = null;
+  // Current Url
+  public url = [];
+  // url Number
+  public urlNumber = 0;
 
   constructor(
     private http: HttpClient,
@@ -36,13 +40,49 @@ class Store {
     this.toast[type](message);
   }
 
+  goToPrevPage() {
+    console.log('goToPrevPage');
+    console.log(this.url[this.urlNumber - 1]);
+
+    if (this.url[this.urlNumber - 1 || 0]) {
+      this.urlNumber -= 1;
+      return this.goToSomeWhere(this.url[this.urlNumber], 'hello');
+    }
+
+    this.giveMessage('There is no prev page', 'info');
+  }
+
   // Change URL method
-  goToSomeWhere(location?: string) {
-    this.getCurrentScroll();
+  goToSomeWhere(location?: string, oldWay?: string) {
     // Location
-    const Location = location ? `/${location}` : '';
+    const nextLocation = location ? location : '/coins';
+    this.getCurrentScroll();
+
+    console.log(nextLocation);
+
+    if (!oldWay) {
+      this.url.length = this.urlNumber;
+      // this.url[this.urlNumber] = this.router.url;
+      // this.url.splice(t);
+      this.url[this.urlNumber + 1 || 0] = nextLocation;
+      this.urlNumber += 1;
+    }
     // First, Change Url, Second, set scroll before click the link or enter
-    this.router.navigateByUrl(`coins${Location}`).then(() => this.setScroll(this.scroll));
+    this.router.navigateByUrl(`${nextLocation}`).then(() => {
+      this.setScroll(this.scroll);
+    });
+  }
+
+  goToNextPage() {
+    console.log('goToNextPage');
+    console.log(this.url[this.urlNumber + 1]);
+
+    if (this.url[this.urlNumber + 1]) {
+      this.urlNumber += 1;
+      return this.goToSomeWhere(this.url[this.urlNumber], 'hello');
+    }
+
+    this.giveMessage('There is no next page', 'info');
   }
 
   // Get current scroll value
