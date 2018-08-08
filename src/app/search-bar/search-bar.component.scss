@@ -98,7 +98,7 @@
 }
 
 /* default desktop */
-@media only screen and (min-width: 1025px) and (max-width: 1680px) {
+@media only screen and (min-width: 1025px) and (max-width: 1440px) {
   .search-bar {
     width: 60%;
     margin-top: 1.5rem;
@@ -110,7 +110,7 @@
 }
 
 /* for 4K display */
-@media only screen and (min-width: 1681px) {
+@media only screen and (min-width: 1441px) {
   .search-bar {
     width: 60%;
     margin-top: 1.5rem;
