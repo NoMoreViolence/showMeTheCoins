@@ -1,4 +1,4 @@
-import { Component, OnInit, HostBinding } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Store } from 'src/app/store.service';
 
 @Component({
@@ -7,7 +7,6 @@ import { Store } from 'src/app/store.service';
   styleUrls: ['./navigate.component.css']
 })
 export class NavigateComponent implements OnInit {
-  @HostBinding('attr.class') class = 'container';
   constructor(private store: Store) {}
 
   ngOnInit() {}

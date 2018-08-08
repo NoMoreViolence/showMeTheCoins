@@ -1,9 +1,9 @@
 <table class="menu-table">
   <thead class="menu-thead">
     <tr class="menu-tr">
-      <th class="menu-left">Previous</th>
+      <th class="menu-left" (click)="store.goToPrevPage()">Previous</th>
       <th class="menu-middle" (click)="store.goToSomeWhere()">Home</th>
-      <th class="menu-right">Next</th>
+      <th class="menu-right" (click)="store.goToNextPage()">Next</th>
     </tr>
   </thead>
 </table>

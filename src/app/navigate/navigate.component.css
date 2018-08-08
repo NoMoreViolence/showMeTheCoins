@@ -5,7 +5,7 @@
 @media only screen and (min-width: 0px) and (max-width: 320px) {
   .menu-table {
     width: 100%;
-    padding-top: 1rem;
+    padding-top: 1.5rem;
   }
 
   .menu-thead {
@@ -20,7 +20,7 @@
   .menu-tr th {
     flex: 1;
     text-align: center;
-    padding: 8px;
+    padding: 1rem;
     border-top: 1px solid black;
     border-bottom: 1px solid black;
   }
