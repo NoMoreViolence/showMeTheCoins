@@ -1,3 +1,39 @@
-<p>
-  coins works!
-</p>
+<div class="coins-container">
+  <table class="coins-table">
+    <thead class="coins-thead">
+      <tr class="coins-tr">
+        <th class="coins-th coins-symbol">Symbol</th>
+        <th class="coins-th coins-money-usd">Currnet $</th>
+        <th class="coins-th coins-money-krw">Current W</th>
+        <th class="coins-th coins-day-volume-usd">1Day Volume $</th>
+        <th class="coins-th coins-day-volume-krw">1Day Volume W</th>
+        <th class="coins-th coins-hour-percent">1Hour Per</th>
+        <th class="coins-th coins-day-percent">1Day Per</th>
+      </tr>
+    </thead>
+    <tbody class="coins-tbody">
+      <tr class="coins-tr" *ngFor="let coin of store.sortedCoinData" (click)="store.goToSomeWhere('/coins/' + coin.symbol)">
+        <td class="coins-td coins-symbol">
+          {{ coin.symbol }}
+        </td>
+        <td class="coins-td coins-money-usd" [ngClass]="coin.quotes.USD.percent_change_24h | changeToColor">
+          {{ coin.quotes.USD.price.toFixed(4) }}
+        </td>
+        <td class="coins-td coins-money-krw" [ngClass]="coin.quotes.KRW.percent_change_24h | changeToColor">
+          {{ coin.quotes.KRW.price.toFixed(4) }}
+        </td>
+        <td class="coins-td coins-day-volume-usd">{{ coin.quotes.USD.volume_24h.toFixed(3) }}</td>
+        <td class="coins-td coins-day-volume-krw">{{ coin.quotes.KRW.volume_24h.toFixed(3) }}</td>
+        <td class="coins-td coins-hour-percent" [ngClass]="coin.quotes.USD.percent_change_1h | changeToColor">
+          {{ coin.quotes.USD.percent_change_1h }}%
+        </td>
+        <td class="coins-td coins-day-percent" [ngClass]="coin.quotes.USD.percent_change_24h | changeToColor">
+          {{ coin.quotes.USD.percent_change_24h }}%
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <!-- Loading spinner -->
+  <app-loading-spinner *ngIf="store.pending === true"></app-loading-spinner>
+  <button class="show-more-button" [disabled]="!store.showMoreButton" (click)="store.loadCoinData()">{{ !store.showMoreButton ? 'No Coins!' : 'Load More...' }}</button>
+</div>

@@ -1,23 +1,374 @@
+// size
+$zero: 0px;
+$small-phone: 320px;
+$middle-phone: 375px;
+$big-phone: 425px;
+$tablet: 768px;
+$labtop: 1024px;
+$desktop: 1440px;
+
 .coins-container {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-}
 
-.show-more-button {
-  outline: none;
-  border: none;
-  background-color: #fafafa;
-  box-shadow: 3px 3px 3px #dbdbdb;
-}
+  .coins-table {
+    @media screen and (min-width: $zero) and (max-width: $small-phone) {
+      width: 100%;
+      padding-top: 2rem;
 
-.show-more-button:hover {
-  background-color: #f7f7f7;
-}
+      .coins-thead {
+        width: 100%;
 
-.show-more-button:active {
-  transform: translateY(4px);
+        .coins-tr {
+          width: 100%;
+          display: flex;
+
+          .coins-th {
+            flex: 1;
+            text-align: center;
+
+            padding: {
+              top: 1rem;
+              bottom: 1rem;
+              right: 1rem;
+              left: 1rem;
+            }
+
+            border: {
+              top: 1px solid black;
+              bottom: 1px solid black;
+            }
+          }
+
+          .coins-money-krw {
+            display: none;
+          }
+
+          .coins-day-volume-krw {
+            display: none;
+          }
+
+          .coins-day-volume-usd {
+            display: none;
+          }
+
+          .coins-hour-percent {
+            display: none;
+          }
+        }
+      }
+
+      .coins-tbody {
+        width: 100%;
+
+        .coins-tr {
+          width: 100%;
+          display: flex;
+
+          .coins-td {
+            flex: 1;
+            font-size: 1rem;
+            text-align: center;
+
+            padding: {
+              top: 1rem;
+              bottom: 1rem;
+              right: 1rem;
+              left: 1rem;
+            }
+
+            border: {
+              top: 1px solid black;
+              bottom: 1px solid black;
+            }
+          }
+
+          .coins-money-usd {
+            text-align: end;
+          }
+
+          .coins-money-krw {
+            display: none;
+          }
+
+          .coins-day-volume-krw {
+            display: none;
+          }
+
+          .coins-day-volume-usd {
+            display: none;
+          }
+
+          .coins-hour-percent {
+            display: none;
+          }
+        }
+      }
+    }
+
+    @media screen and (min-width: $small-phone + 1px) and (max-width: $middle-phone) {
+      width: 100%;
+      padding-top: 2rem;
+
+      .coins-thead {
+        width: 100%;
+
+        .coins-tr {
+          width: 100%;
+          display: flex;
+
+          .coins-th {
+            flex: 1;
+            font-size: 1rem;
+            text-align: center;
+
+            padding: {
+              top: 1rem;
+              bottom: 1rem;
+              right: 1rem;
+              left: 1rem;
+            }
+
+            border: {
+              top: 1px solid black;
+              bottom: 1px solid black;
+            }
+          }
+
+          .coins-money-krw {
+            display: none;
+          }
+
+          .coins-day-volume-krw {
+            display: none;
+          }
+
+          .coins-day-volume-usd {
+            display: none;
+          }
+
+          .coins-hour-percent {
+            display: none;
+          }
+        }
+      }
+
+      .coins-tbody {
+        width: 100%;
+
+        .coins-tr {
+          width: 100%;
+          display: flex;
+
+          .coins-td {
+            flex: 1;
+            font-size: 1rem;
+            text-align: center;
+
+            padding: {
+              top: 1rem;
+              bottom: 1rem;
+              right: 1rem;
+              left: 1rem;
+            }
+
+            border: {
+              top: 1px solid black;
+              bottom: 1px solid black;
+            }
+          }
+
+          .coins-money-usd {
+            padding-right: 1.5rem;
+            text-align: end;
+          }
+
+          .coins-money-krw {
+            display: none;
+          }
+
+          .coins-day-volume-krw {
+            display: none;
+          }
+
+          .coins-day-volume-usd {
+            display: none;
+          }
+
+          .coins-hour-percent {
+            display: none;
+          }
+        }
+      }
+    }
+
+    @media screen and (min-width: $middle-phone + 1px) and (max-width: $big-phone) {
+      width: 100%;
+      padding-top: 2rem;
+
+      .coins-thead {
+        width: 100%;
+
+        .coins-tr {
+          width: 100%;
+          display: flex;
+
+          .coins-th {
+            flex: 1;
+            font-size: 1rem;
+            text-align: center;
+
+            padding: {
+              top: 1rem;
+              bottom: 1rem;
+              right: 1rem;
+              left: 1rem;
+            }
+
+            border: {
+              top: 1px solid black;
+              bottom: 1px solid black;
+            }
+          }
+
+          .coins-money-krw {
+            display: none;
+          }
+
+          .coins-day-volume-krw {
+            display: none;
+          }
+
+          .coins-day-volume-usd {
+            display: none;
+          }
+
+          .coins-hour-percent {
+            display: none;
+          }
+        }
+      }
+
+      .coins-tbody {
+        width: 100%;
+
+        .coins-tr {
+          width: 100%;
+          display: flex;
+
+          .coins-td {
+            flex: 1;
+            font-size: 1rem;
+            text-align: center;
+
+            padding: {
+              top: 1rem;
+              bottom: 1rem;
+              right: 1rem;
+              left: 1rem;
+            }
+
+            border: {
+              top: 1px solid black;
+              bottom: 1px solid black;
+            }
+          }
+
+          .coins-money-usd {
+            padding-right: 2rem;
+            text-align: end;
+          }
+
+          .coins-money-krw {
+            display: none;
+          }
+
+          .coins-day-volume-krw {
+            display: none;
+          }
+
+          .coins-day-volume-usd {
+            display: none;
+          }
+
+          .coins-hour-percent {
+            display: none;
+          }
+        }
+      }
+    }
+
+    @media screen and (min-width: $big-phone + 1px) and (max-width: $tablet) {
+    }
+
+    @media screen and (min-width: $tablet + 1px) and (max-width: $labtop) {
+    }
+
+    @media screen and (min-width: $labtop + 1px) and (max-width: $desktop) {
+    }
+
+    @media screen and (min-width: $desktop + 1px) {
+    }
+  }
+
+  .show-more-button {
+    text-align: center;
+    outline: none;
+    border: none;
+    background-color: #fafafa;
+    box-shadow: 3px 3px 3px #dbdddb;
+
+    &:hover {
+      background-color: #f7f7f7;
+    }
+
+    &:active {
+      transform: translateY(4px);
+    }
+
+    @media screen and (min-width: $zero) and (max-width: $small-phone) {
+      width: 70%;
+      padding: 1rem;
+
+      margin: {
+        top: 1rem;
+        bottom: 1rem;
+      }
+      font-size: 1.3rem;
+    }
+
+    @media screen and (min-width: $small-phone + 1px) and (max-width: $middle-phone) {
+      width: 70%;
+
+      margin: {
+        top: 1rem;
+        bottom: 1rem;
+      }
+      font-size: 1rem;
+    }
+
+    @media screen and (min-width: $middle-phone + 1px) and (max-width: $big-phone) {
+      width: 70%;
+    }
+
+    @media screen and (min-width: $big-phone + 1px) and (max-width: $tablet) {
+      width: 70%;
+    }
+
+    @media screen and (min-width: $tablet + 1px) and (max-width: $labtop) {
+      width: 70%;
+    }
+
+    @media screen and (min-width: $labtop + 1px) and (max-width: $desktop) {
+      width: 70%;
+    }
+
+    @media screen and (min-width: $desktop + 1px) {
+      width: 70%;
+    }
+  }
 }
 
 .red {
@@ -26,280 +377,4 @@
 
 .blue {
   color: blue;
-}
-
-/* iphone SE */
-/* very small mobie view */
-/* Reactive font size */
-@media only screen and (min-width: 0px) and (max-width: 320px) {
-  /* common */
-  .coins-table {
-    width: 100%;
-    padding-top: 2rem;
-  }
-
-  .coins-tr {
-    width: 100%;
-    display: flex;
-  }
-
-  /* thead */
-  .coins-thead {
-    width: 100%;
-  }
-
-  .coins-tr > .coins-money-krw {
-    display: none;
-  }
-
-  .coins-day-volume-usd {
-    display: none;
-  }
-
-  .coins-day-volume-krw {
-    display: none;
-  }
-
-  .coins-hour-parecnet {
-    display: none;
-  }
-
-  .coins-thead > .coins-tr > th {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
-    padding: 1rem;
-  }
-
-  /* tbody */
-  .coins-tbody {
-    width: 100%;
-  }
-
-  .coins-tbody > .coins-tr > td {
-    flex: 1;
-    display: flex;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
-    padding: 1rem;
-  }
-
-  /* Data */
-  .coins-tbody > .coins-tr > .coins-symbol,
-  .coins-percent {
-    justify-content: center;
-  }
-
-  .coins-tbody > .coins-tr > .coins-money-usd .coins-money-krw {
-    justify-content: flex-end;
-  }
-
-  .coins-tbody > .coins-tr > .coins
-
-  /* button */
-  .show-more-button {
-    width: 60%;
-    margin-top: 1.5rem;
-    padding: 1rem;
-    font-size: 1.3rem;
-  }
-}
-
-
-/* iphone 6 7 8, galaxy S5 */
-/* small mobie view */
-/* Reactive font size */
-@media only screen and (min-width: 321px) and (max-width: 375px) {
-  .coins-table {
-    width: 100%;
-    padding-top: 2rem;
-  }
-
-  .coins-tr {
-    width: 100%;
-    display: flex;
-  }
-
-  .coins-thead {
-    width: 100%;
-  }
-
-  /* Menu */
-  .coins-thead > .coins-tr > th {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
-    padding: 1rem;
-  }
-
-  .coins-tbody {
-    width: 100%;
-  }
-
-  .coins-tbody > .coins-tr > td {
-    flex: 1;
-    display: flex;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
-    padding: 1rem;
-  }
-
-  /* Data */
-  .coins-tbody > .coins-tr > .coins-symbol,
-  .coins-percent {
-    justify-content: center;
-  }
-
-  .coins-tbody > .coins-tr > .coins-money {
-    justify-content: flex-end;
-  }
-
-  .show-more-button {
-    width: 60%;
-    margin-top: 1.5rem;
-    padding: 1rem;
-    font-size: 1.3rem;
-  }
-}
-
-/* iphone 6+, 7+, 8+, galaxy Note, Nexus 5X */
-/* large mobie view */
-/* Reactive font size */
-@media only screen and (min-width: 376px) and (max-width: 425px) {
-  .coins-table {
-    width: 100%;
-    padding-top: 2rem;
-  }
-
-  .coins-tr {
-    width: 100%;
-    display: flex;
-  }
-
-  .coins-thead {
-    width: 100%;
-  }
-
-  /* Menu */
-  .coins-thead > .coins-tr > th {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
-    padding: 1rem;
-  }
-
-  .coins-tbody {
-    width: 100%;
-  }
-
-  .coins-tbody > .coins-tr > td {
-    flex: 1;
-    display: flex;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
-    padding: 1rem;
-  }
-
-  /* Data */
-  .coins-tbody > .coins-tr > .coins-symbol,
-  .coins-percent {
-    justify-content: center;
-  }
-
-  .coins-tbody > .coins-tr > .coins-money {
-    justify-content: flex-end;
-  }
-
-  .show-more-button {
-    width: 60%;
-    margin-top: 1.5rem;
-    padding: 1rem;
-    font-size: 1.3rem;
-  }
-}
-
-/* tablet */
-@media only screen and (min-width: 426px) and (max-width: 768px) {
-  .coins-table {
-    width: 100%;
-    padding-top: 2rem;
-  }
-
-  .coins-tr {
-    width: 100%;
-    display: flex;
-  }
-
-  .coins-thead {
-    width: 100%;
-  }
-
-  /* Menu */
-  .coins-thead > .coins-tr > th {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
-    padding: 1rem;
-  }
-
-  .coins-tbody {
-    width: 100%;
-  }
-
-  .coins-tbody > .coins-tr > td {
-    flex: 1;
-    display: flex;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
-    padding: 1rem;
-  }
-
-  /* Data */
-  .coins-tbody > .coins-tr > .coins-symbol,
-  .coins-percent {
-    justify-content: center;
-  }
-
-  .coins-tbody > .coins-tr > .coins-money {
-    justify-content: flex-end;
-  }
-
-  .show-more-button {
-    width: 60%;
-    margin-top: 1.5rem;
-    padding: 1rem;
-    font-size: 1.3rem;
-  }
-}
-
-/* laptop */
-@media only screen and (min-width: 769px) and (max-width: 1024px) {
-}
-
-/* default desktop */
-@media only screen and (min-width: 1025px) and (max-width: 1440px) {
-}
-
-/* for 4K display */
-@media only screen and (min-width: 1441px) {
-  .coins-table {
-    width: 100%;
-  }
-
-  .coins-thead {
-    width: 100%;
-  }
-
-  .coins-tbody {
-    width: 100%;
-  }
 }
