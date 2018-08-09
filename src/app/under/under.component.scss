@@ -1,10 +1,108 @@
+// size
+$zero: 0px;
+$small-phone: 320px;
+$middle-phone: 375px;
+$big-phone: 425px;
+$tablet: 768px;
+$labtop: 1024px;
+$desktop: 1440px;
+
 .under-container {
   width: 100%;
-}
 
-.under {
-  width: 100%;
-  padding-top: 1.5rem;
-  padding-bottom: 1rem;
-  text-align: center;
+  .under {
+    width: 100%;
+    text-align: center;
+  }
+
+  @media screen and (min-width: $zero) and (max-width: $small-phone) {
+    .under {
+      font: {
+        size: 1.1rem;
+      }
+
+      padding: {
+        top: 1rem;
+        bottom: 1rem;
+      }
+    }
+  }
+
+  @media screen and (min-width: $small-phone + 1px) and (max-width: $middle-phone) {
+    .under {
+      font: {
+        size: 1.1rem;
+      }
+
+      padding: {
+        top: 1rem;
+        bottom: 1rem;
+      }
+    }
+  }
+
+  @media screen and (min-width: $middle-phone + 1px) and (max-width: $big-phone) {
+    .under {
+      font: {
+        size: 1rem;
+      }
+
+      padding: {
+        top: 1rem;
+        bottom: 1rem;
+      }
+    }
+  }
+
+  @media screen and (min-width: $big-phone + 1px) and (max-width: $tablet) {
+    .under {
+      font: {
+        size: 1.3rem;
+      }
+
+      padding: {
+        top: 1.5rem;
+        bottom: 1.5rem;
+      }
+    }
+  }
+
+  @media screen and (min-width: $tablet + 1px) and (max-width: $labtop) {
+    .under {
+      font: {
+        size: 1.5rem;
+      }
+
+      padding: {
+        top: 1.5rem;
+        bottom: 1.5rem;
+      }
+    }
+  }
+
+  @media screen and (min-width: $labtop + 1px) and (max-width: $desktop) {
+    .under {
+      font: {
+        size: 1.5rem;
+      }
+
+      padding: {
+        top: 1.5rem;
+        bottom: 1.5rem;
+      }
+    }
+  }
+
+  @media screen and (min-width: $desktop + 1px) {
+    .under {
+      font: {
+        size: 1.5rem;
+      }
+
+      padding: {
+        top: 2rem;
+        bottom: 2rem;
+      }
+    }
+  }
 }
