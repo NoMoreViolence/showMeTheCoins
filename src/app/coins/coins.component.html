@@ -17,10 +17,10 @@
           {{ coin.symbol }}
         </td>
         <td class="coins-td coins-money-usd" [ngClass]="coin.quotes.USD.percent_change_24h | changeToColor">
-          {{ coin.quotes.USD.price.toFixed(4) }}
+          {{ [coin.quotes.USD.price, 4] | comaToNumber }}$
         </td>
         <td class="coins-td coins-money-krw" [ngClass]="coin.quotes.KRW.percent_change_24h | changeToColor">
-          {{ coin.quotes.KRW.price.toFixed(4) }}
+          {{ [coin.quotes.KRW.price, 3] | comaToNumber }}W
         </td>
         <td class="coins-td coins-day-volume-usd">{{ coin.quotes.USD.volume_24h.toFixed(3) }}</td>
         <td class="coins-td coins-day-volume-krw">{{ coin.quotes.KRW.volume_24h.toFixed(3) }}</td>
