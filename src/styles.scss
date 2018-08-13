@@ -1,17 +1,37 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~ngx-toastr/toastr.css';
 
+@mixin background-size($size) {
+  -webkit-background-size: $size;
+  -moz-background-size: $size;
+  -ms-background-size: $size;
+  background-size: $size;
+}
+
 html,
 body {
   margin: 0;
   padding: 0;
 }
 
-html {
-  background: url('/assets/images/wallpaper.jpg') no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+body {
+  @media screen and (min-width: 0px) and (max-width: 768px) {
+    background: {
+      // color: gray;
+      image: url('/assets/images/wallpaper.jpg');
+      // repeat: no-repeat;
+      // attachment: fixed;
+    }
+  }
+
+  @media screen and (min-width: 769px) {
+    background: {
+      image: url('/assets/images/wallpaper.jpg');
+      repeat: no-repeat;
+      attachment: fixed;
+      position: 50% 50%;
+    }
+    @include background-size(cover);
+  }
   font-family: 'Roboto', sans-serif;
 }
