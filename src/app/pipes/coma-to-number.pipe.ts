@@ -19,6 +19,10 @@ export class ComaToNumberPipe implements PipeTransform {
 
     const comaIntValue = int.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
-    return comaIntValue + '.' + float;
+    if (value[1] !== 0) {
+      return comaIntValue + '.' + float;
+    }
+
+    return comaIntValue;
   }
 }
