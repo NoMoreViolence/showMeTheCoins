@@ -1,9 +1,11 @@
-<table class="menu-table">
-  <thead class="menu-thead">
-    <tr class="menu-tr">
-      <th class="menu-left" (click)="store.goToPrevPage()">Previous</th>
-      <th class="menu-middle" (click)="store.goToSomeWhere()">Home</th>
-      <th class="menu-right" (click)="store.goToNextPage()">Next</th>
-    </tr>
-  </thead>
-</table>
+<div class="menu-table-container">
+  <table class="menu-table">
+    <thead class="menu-thead">
+      <tr class="menu-tr">
+        <th (click)="store.goToPrevPage()">Previous</th>
+        <th (click)="store.goToSomeWhere()">Home</th>
+        <th (click)="store.goToNextPage()">Next</th>
+      </tr>
+    </thead>
+  </table>
+</div>
