@@ -31,7 +31,7 @@ $desktop: 1440px;
 
           .coins-th {
             flex: 1;
-            text-align: center;
+            font-size: 1rem;
 
             padding: {
               top: 1rem;
@@ -44,6 +44,18 @@ $desktop: 1440px;
               top: 1px solid black;
               bottom: 1px solid black;
             }
+          }
+
+          .coins-symbol {
+            text-align: left;
+          }
+
+          .coins-money-usd {
+            text-align: right;
+          }
+
+          .coins-day-percent {
+            text-align: right;
           }
 
           .coins-money-krw {
@@ -74,7 +86,6 @@ $desktop: 1440px;
           .coins-td {
             flex: 1;
             font-size: 1rem;
-            text-align: center;
 
             padding: {
               top: 1rem;
@@ -87,6 +98,18 @@ $desktop: 1440px;
               top: 1px solid black;
               bottom: 1px solid black;
             }
+          }
+
+          .coins-symbol {
+            text-align: left;
+          }
+
+          .coins-money-usd {
+            text-align: right;
+          }
+
+          .coins-day-percent {
+            text-align: right;
           }
 
           .coins-money-usd {
@@ -118,7 +141,11 @@ $desktop: 1440px;
 
     @media screen and (min-width: $small-phone + 1px) and (max-width: $middle-phone) {
       width: 100%;
-      padding-top: 2rem;
+
+      padding: {
+        top: 2rem;
+        bottom: 1rem;
+      }
 
       .coins-thead {
         width: 100%;
@@ -130,7 +157,6 @@ $desktop: 1440px;
           .coins-th {
             flex: 1;
             font-size: 1rem;
-            text-align: center;
 
             padding: {
               top: 1rem;
@@ -143,6 +169,18 @@ $desktop: 1440px;
               top: 1px solid black;
               bottom: 1px solid black;
             }
+          }
+
+          .coins-symbol {
+            text-align: left;
+          }
+
+          .coins-money-usd {
+            text-align: right;
+          }
+
+          .coins-day-percent {
+            text-align: right;
           }
 
           .coins-money-krw {
@@ -173,7 +211,6 @@ $desktop: 1440px;
           .coins-td {
             flex: 1;
             font-size: 1rem;
-            text-align: center;
 
             padding: {
               top: 1rem;
@@ -188,8 +225,23 @@ $desktop: 1440px;
             }
           }
 
+          .coins-symbol {
+            text-align: left;
+          }
+
           .coins-money-usd {
-            padding-right: 1.5rem;
+            text-align: right;
+          }
+
+          .coins-day-percent {
+            text-align: right;
+          }
+
+          .coins-money-usd {
+            padding: {
+              left: 0rem;
+              right: 0rem;
+            }
             text-align: end;
           }
 
@@ -214,7 +266,11 @@ $desktop: 1440px;
 
     @media screen and (min-width: $middle-phone + 1px) and (max-width: $big-phone) {
       width: 100%;
-      padding-top: 2rem;
+
+      padding: {
+        top: 2rem;
+        bottom: 1rem;
+      }
 
       .coins-thead {
         width: 100%;
@@ -226,7 +282,6 @@ $desktop: 1440px;
           .coins-th {
             flex: 1;
             font-size: 1rem;
-            text-align: center;
 
             padding: {
               top: 1rem;
@@ -239,6 +294,18 @@ $desktop: 1440px;
               top: 1px solid black;
               bottom: 1px solid black;
             }
+          }
+
+          .coins-symbol {
+            text-align: left;
+          }
+
+          .coins-money-usd {
+            text-align: right;
+          }
+
+          .coins-day-percent {
+            text-align: right;
           }
 
           .coins-money-krw {
@@ -269,7 +336,6 @@ $desktop: 1440px;
           .coins-td {
             flex: 1;
             font-size: 1rem;
-            text-align: center;
 
             padding: {
               top: 1rem;
@@ -284,8 +350,23 @@ $desktop: 1440px;
             }
           }
 
+          .coins-symbol {
+            text-align: left;
+          }
+
           .coins-money-usd {
-            padding-right: 2rem;
+            text-align: right;
+          }
+
+          .coins-day-percent {
+            text-align: right;
+          }
+
+          .coins-money-usd {
+            padding: {
+              left: 0rem;
+              right: 0rem;
+            }
             text-align: end;
           }
 
@@ -382,7 +463,7 @@ $desktop: 1440px;
           }
 
           .coins-money-krw {
-            padding-right: 1.8rem;
+            padding-right: 3rem;
             text-align: end;
           }
 
@@ -402,6 +483,96 @@ $desktop: 1440px;
     }
 
     @media screen and (min-width: $tablet + 1px) and (max-width: $labtop) {
+      width: 80%;
+      padding-top: 2rem;
+
+      .coins-thead {
+        width: 100%;
+
+        .coins-tr {
+          width: 100%;
+          display: flex;
+
+          .coins-th {
+            flex: 1;
+            font-size: 1rem;
+            text-align: center;
+
+            padding: {
+              top: 1rem;
+              bottom: 1rem;
+              right: 1rem;
+              left: 1rem;
+            }
+
+            border: {
+              top: 1px solid black;
+              bottom: 1px solid black;
+            }
+          }
+
+          .coins-day-volume-krw {
+            display: none;
+          }
+
+          .coins-day-volume-usd {
+            display: none;
+          }
+
+          .coins-hour-percent {
+            display: none;
+          }
+        }
+      }
+
+      .coins-tbody {
+        width: 100%;
+
+        .coins-tr {
+          width: 100%;
+          display: flex;
+
+          .coins-td {
+            flex: 1;
+            font-size: 1rem;
+            text-align: center;
+
+            padding: {
+              top: 1rem;
+              bottom: 1rem;
+              right: 1rem;
+              left: 1rem;
+            }
+
+            border: {
+              top: 1px solid black;
+              bottom: 1px solid black;
+            }
+          }
+
+          .coins-money-usd {
+            padding-right: 3.5rem;
+            text-align: end;
+          }
+
+          .coins-money-krw {
+            padding-right: 3.5rem;
+            text-align: end;
+          }
+
+          .coins-day-volume-krw {
+            display: none;
+          }
+
+          .coins-day-volume-usd {
+            display: none;
+          }
+
+          .coins-hour-percent {
+            display: none;
+          }
+        }
+      }
     }
 
     @media screen and (min-width: $labtop + 1px) and (max-width: $desktop) {
@@ -415,8 +586,8 @@ $desktop: 1440px;
     text-align: center;
     outline: none;
     border: none;
-    background-color: #fafafa;
-    box-shadow: 3px 3px 3px #dbdddb;
+    background-color: #e0e0e0;
+    box-shadow: 3px 3px 3px #9b9b9b;
 
     &:hover {
       background-color: #f7f7f7;
@@ -460,11 +631,25 @@ $desktop: 1440px;
     }
 
     @media screen and (min-width: $big-phone + 1px) and (max-width: $tablet) {
-      width: 70%;
+      width: 40%;
+      padding: 1rem;
+
+      margin: {
+        top: 1.5rem;
+        bottom: 1rem;
+      }
+      font-size: 1.5rem;
     }
 
     @media screen and (min-width: $tablet + 1px) and (max-width: $labtop) {
-      width: 70%;
+      width: 50%;
+      padding: 1rem;
+
+      margin: {
+        top: 1.5rem;
+        bottom: 1rem;
+      }
+      font-size: 1.5rem;
     }
 
     @media screen and (min-width: $labtop + 1px) and (max-width: $desktop) {

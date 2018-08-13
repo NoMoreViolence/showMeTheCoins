@@ -2,9 +2,15 @@
   <table class="menu-table">
     <thead class="menu-thead">
       <tr class="menu-tr">
-        <th (click)="store.goToPrevPage()">Previous</th>
-        <th (click)="store.goToSomeWhere()">Home</th>
-        <th (click)="store.goToNextPage()">Next</th>
+        <th (click)="store.goToPrevPage()">
+          <span>Previous</span>
+        </th>
+        <th (click)="store.goToSomeWhere()">
+          <span>Home</span>
+        </th>
+        <th (click)="store.goToNextPage()">
+          <span>Next</span>
+        </th>
       </tr>
     </thead>
   </table>
