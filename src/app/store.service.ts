@@ -13,16 +13,21 @@ class Store {
   public allCoinData: CoinUnit[] = [];
   // Sorted coin data
   public sortedCoinData: CoinUnit[] = [];
+  // Search input
+  public searchInput = '';
+  // User Sort Choice
+  public userChoice = 'market_cap';
+
   // request coin number
   public loaded = 1;
   // Request pending value
   public pending = false;
   // Request button, if user get all coin value, Become button that can not be clicked
   public showMoreButton = true;
-  // Search input
-  public searchInput = '';
+
   // Scroll value
   public scroll: [number, number] | null = null;
+
   // Current Url
   public url = [];
   // url Number
@@ -52,12 +57,12 @@ class Store {
     // First, Change Url, Second, set scroll before url moved, Third, change url array info
     this.router.navigateByUrl(this.url[this.urlNumber || 0]).then(() => {
       // set scroll
-      this.setScroll(this.scroll);
+      this.setScroll();
     });
   }
 
   // Change URL method
-  goToSomeWhere(location?: string, oldWay?: string) {
+  goToSomeWhere(location?: string) {
     // Bring current url value
     this.url[this.urlNumber || 0] = this.router.url;
 
@@ -70,7 +75,7 @@ class Store {
       // First, Change Url, Second, set scroll before url moved, Third, change url array info
       this.router.navigateByUrl(`${nextLocation}`).then(() => {
         // set scroll
-        this.setScroll(this.scroll);
+        this.setScroll();
         // set current url
         this.urlNumber += 1;
         this.url[this.urlNumber || 0] = this.router.url;
@@ -92,7 +97,7 @@ class Store {
     // First, Change Url, Second, set scroll before url moved, Third, change url array info
     this.router.navigateByUrl(this.url[this.urlNumber || 0]).then(() => {
       // set scroll
-      this.setScroll(this.scroll);
+      this.setScroll();
     });
   }
 
@@ -102,8 +107,8 @@ class Store {
   }
 
   // Setting scroll value
-  setScroll(value: [number, number]): void {
-    this.viewportScroller.scrollToPosition(value);
+  setScroll(): void {
+    this.viewportScroller.scrollToPosition(this.scroll);
   }
 
   // Change search bar input
@@ -111,7 +116,7 @@ class Store {
     // Input change
     this.searchInput = event.target.value;
     // Sort data
-    this.sortCoinData();
+    this.sortCoinDataByKey();
     // If user click enter key, go to coins component
     if (event.keyCode === 13 && this.searchInput !== '') {
       this.goToSomeWhere();
@@ -129,22 +134,20 @@ class Store {
     // API Call
     this.getCoins(this.loaded).subscribe(
       (data: { data }): void => {
-        // Add coin data
-        this.allCoinData = concat([this.allCoinData, makeArray(data.data)]);
+        this.allCoinData = concat([this.allCoinData, makeArray(data.data)]); // Add coin data
+        this.sortCoinDataByKey(); // Sort Coin Data
+        this.sortCoinDataByUserChoice();
 
-        this.sortCoinData();
-        // Loaded
-        this.pending = false;
-        // Up load count
-        this.loaded += 100;
+        this.pending = false; // Coin Loaded
+        this.loaded += 100; // Up load count
+
         // If there is a message
         if (message) {
           this.giveMessage(message, 'success');
         }
       },
       (err: HttpErrorResponse): void => {
-        // Loaded
-        this.pending = false;
+        this.pending = false; // Loaded
 
         // Error handle
         if (err.status === 404) {
@@ -154,16 +157,27 @@ class Store {
         if (err.status === 0) {
           this.giveMessage('인터넷 연결 문제가 발생했습니다 !', 'error');
         }
-
-        console.log(err.message);
       }
     );
   }
 
-  sortCoinData() {
+  // Sort Coin List By User's key
+  sortCoinDataByKey() {
     this.sortedCoinData = this.allCoinData.filter(
       (object: CoinUnit) => object.symbol.toLowerCase().indexOf(this.searchInput.toLowerCase()) > -1
     );
+  }
+
+  // Sort Coin List By User's choice
+  sortCoinDataByUserChoice() {
+    this.sortedCoinData = this.allCoinData.sort((objectOne: CoinUnit, objectTwo: CoinUnit) => {
+      return objectTwo.quotes.USD[this.userChoice] - objectOne.quotes.USD[this.userChoice];
+    });
+  }
+  // Change User Choice
+  changeUserChoice(value: any) {
+    console.log(value);
+    // this.userChoice = value;
   }
 
   // Get coins
