@@ -1,6 +1,6 @@
 import MoneyData from './MoneyData';
 
-export default interface CoinUnit {
+interface CoinUnit {
   circulating_supply: number;
   id: number;
   last_updated: number;
@@ -12,3 +12,5 @@ export default interface CoinUnit {
   total_supply: number;
   website_slug: string;
 }
+
+export default CoinUnit;

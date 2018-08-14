@@ -1,4 +1,4 @@
-export default interface MoneyData {
+interface MoneyData {
   market_cap: number;
   percent_change_1h: number;
   percent_change_7d: number;
@@ -6,3 +6,5 @@ export default interface MoneyData {
   price: number;
   volume_24h: number;
 }
+
+export default MoneyData;
