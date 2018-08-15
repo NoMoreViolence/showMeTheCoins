@@ -4,7 +4,7 @@ import { ViewportScroller } from '@angular/common';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
-import { CoinUnit } from 'src/interfaces';
+import { CoinUnit, UrlData, ScrollData } from 'src/interfaces';
 import { concat, makeArray } from 'src/functions';
 
 @Injectable()
@@ -25,13 +25,15 @@ class Store {
   // Request button, if user get all coin value, Become button that can not be clicked
   public showMoreButton = true;
 
-  // Scroll value
-  public scroll: [number, number] | null = null;
+  // URL + SCROLL Value
+  public urlScroll: UrlData[] = [];
+  // Url number
+  public urlNumber = 0;
 
+  // Scroll value
+  public tempScroll: [number, number] | null = null;
   // Current Url
   public url = [];
-  // url Number
-  public urlNumber = 0;
 
   constructor(
     private http: HttpClient,
@@ -103,12 +105,12 @@ class Store {
 
   // Get current scroll value
   getCurrentScroll(): void {
-    this.scroll = this.viewportScroller.getScrollPosition();
+    this.tempScroll = this.viewportScroller.getScrollPosition();
   }
 
   // Setting scroll value
-  setScroll(): void {
-    this.viewportScroller.scrollToPosition(this.scroll);
+  setScroll(data: [number, number]): void {
+    this.viewportScroller.scrollToPosition(data);
   }
 
   // Change search bar input
