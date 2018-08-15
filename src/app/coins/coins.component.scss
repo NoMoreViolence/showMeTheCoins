@@ -800,7 +800,7 @@ $desktop: 1440px;
             flex-direction: column;
             justify-content: center;
             flex: 1;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
 
             padding: {
               top: 2rem;
@@ -856,7 +856,7 @@ $desktop: 1440px;
 
           .coins-td {
             flex: 1;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             text-align: center;
 
             padding: {
@@ -977,11 +977,25 @@ $desktop: 1440px;
     }
 
     @media screen and (min-width: $labtop + 1px) and (max-width: $desktop) {
-      width: 70%;
+      width: 50%;
+      padding: 1rem;
+
+      margin: {
+        top: 1.5rem;
+        bottom: 1rem;
+      }
+      font-size: 1.5rem;
     }
 
     @media screen and (min-width: $desktop + 1px) {
-      width: 70%;
+      width: 50%;
+      padding: 1rem;
+
+      margin: {
+        top: 1.5rem;
+        bottom: 1rem;
+      }
+      font-size: 1.5rem;
     }
   }
 }
