@@ -1,3 +1,11 @@
+@mixin transition() {
+  transition: all 0.1s ease-in-out;
+  -webkit-transition: all 0.1s ease-in-out;
+  -moz-transition: all 0.1s ease-in-out;
+  -ms-transition: all 0.1s ease-in-out;
+  -o-transition: all 0.1s ease-in-out;
+}
+
 .menu-table-container {
   width: 100%;
   display: flex;
@@ -14,6 +22,7 @@
 
       th {
         span {
+          @include transition();
           font-weight: 30;
 
           &:hover {
@@ -38,6 +47,7 @@
 
   .menu-tr th {
     flex: 1;
+    font-size: 1.1rem;
     text-align: center;
     padding: 1rem;
     border-top: 1px solid black;
@@ -56,6 +66,7 @@
 
   .menu-tr th {
     flex: 1;
+    font-size: 1.1rem;
     text-align: center;
     padding: 1rem;
     border-top: 1px solid black;
@@ -72,10 +83,6 @@
     padding-top: 2rem;
   }
 
-  .menu-thead {
-    width: 100%;
-  }
-
   .menu-tr {
     width: 100%;
     display: flex;
@@ -83,6 +90,7 @@
 
   .menu-tr th {
     flex: 1;
+    font-size: 1.1rem;
     text-align: center;
     padding: 1rem;
     border-top: 1px solid black;
@@ -93,21 +101,13 @@
 /* tablet */
 @media only screen and (min-width: 426px) and (max-width: 768px) {
   .menu-table {
-    width: 80%;
+    width: 100%;
     padding-top: 2rem;
-  }
-
-  .menu-thead {
-    width: 100%;
-  }
-
-  .menu-tr {
-    width: 100%;
-    display: flex;
   }
 
   .menu-tr th {
     flex: 1;
+    font-size: 1.5rem;
     text-align: center;
     padding: 1rem;
     border-top: 1px solid black;
@@ -118,12 +118,13 @@
 /* laptop */
 @media only screen and (min-width: 769px) and (max-width: 1024px) {
   .menu-table {
-    width: 80%;
+    width: 720px;
     padding-top: 2rem;
   }
 
   .menu-tr th {
     flex: 1;
+    font-size: 1.5rem;
     text-align: center;
     padding: 1rem;
     border-top: 1px solid black;
@@ -156,7 +157,7 @@
 
   .menu-tr th {
     flex: 1;
-    font-size: 3rem;
+    font-size: 2rem;
     text-align: center;
     padding: 1rem;
     border-top: 1px solid black;

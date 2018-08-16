@@ -7,6 +7,14 @@ $tablet: 768px;
 $labtop: 1024px;
 $desktop: 1440px;
 
+@mixin transition() {
+  transition: all 0.1s ease-in-out;
+  -webkit-transition: all 0.1s ease-in-out;
+  -moz-transition: all 0.1s ease-in-out;
+  -ms-transition: all 0.1s ease-in-out;
+  -o-transition: all 0.1s ease-in-out;
+}
+
 .coins-container {
   width: 100%;
   display: flex;
@@ -14,6 +22,66 @@ $desktop: 1440px;
   align-items: center;
 
   .coins-table {
+    .coins-thead {
+      width: 100%;
+
+      .coins-tr {
+        width: 100%;
+        display: flex;
+
+        .coins-th {
+          @include transition();
+        }
+
+        // .coins-symbol.coins-money-usd.coins-market-cap.coins-money-usd.coins-day-percent.coins-money-krw.coins-day-volume-krw.coins-day-volume-usd.coins-hour-percent {
+        //   background-color: rgb(241, 241, 241);
+        // }
+
+        .coins-symbol:hover {
+          background-color: rgb(241, 241, 241);
+        }
+        .coins-money-usd:hover {
+          background-color: rgb(241, 241, 241);
+        }
+        .coins-market-cap:hover {
+          background-color: rgb(241, 241, 241);
+        }
+        .coins-money-usd:hover {
+          background-color: rgb(241, 241, 241);
+        }
+        .coins-money-krw:hover {
+          background-color: rgb(241, 241, 241);
+        }
+        .coins-day-volume-krw:hover {
+          background-color: rgb(241, 241, 241);
+        }
+        .coins-day-volume-usd:hover {
+          background-color: rgb(241, 241, 241);
+        }
+        .coins-hour-percent:hover {
+          background-color: rgb(241, 241, 241);
+        }
+        .coins-day-percent:hover {
+          background-color: rgb(241, 241, 241);
+        }
+      }
+    }
+
+    .coins-tbody {
+      width: 100%;
+
+      .coins-tr {
+        @include transition();
+        width: 100%;
+        display: flex;
+        cursor: pointer;
+      }
+
+      .coins-tr:hover {
+        background-color: rgb(241, 241, 241);
+      }
+    }
+
     @media screen and (min-width: $zero) and (max-width: $small-phone) {
       width: 100%;
 
@@ -23,12 +91,7 @@ $desktop: 1440px;
       }
 
       .coins-thead {
-        width: 100%;
-
         .coins-tr {
-          width: 100%;
-          display: flex;
-
           .coins-th {
             flex: 1;
             font-size: 1rem;
@@ -81,12 +144,7 @@ $desktop: 1440px;
       }
 
       .coins-tbody {
-        width: 100%;
-
         .coins-tr {
-          width: 100%;
-          display: flex;
-
           .coins-td {
             flex: 1;
             font-size: 1rem;
@@ -156,12 +214,7 @@ $desktop: 1440px;
       }
 
       .coins-thead {
-        width: 100%;
-
         .coins-tr {
-          width: 100%;
-          display: flex;
-
           .coins-th {
             flex: 1;
             font-size: 1rem;
@@ -214,12 +267,7 @@ $desktop: 1440px;
       }
 
       .coins-tbody {
-        width: 100%;
-
         .coins-tr {
-          width: 100%;
-          display: flex;
-
           .coins-td {
             flex: 1;
             font-size: 1rem;
@@ -289,10 +337,7 @@ $desktop: 1440px;
       }
 
       .coins-thead {
-        width: 100%;
-
         .coins-tr {
-          width: 100%;
           display: flex;
 
           .coins-th {
@@ -347,12 +392,7 @@ $desktop: 1440px;
       }
 
       .coins-tbody {
-        width: 100%;
-
         .coins-tr {
-          width: 100%;
-          display: flex;
-
           .coins-td {
             flex: 1;
             font-size: 1rem;
@@ -410,14 +450,11 @@ $desktop: 1440px;
     }
 
     @media screen and (min-width: $big-phone + 1px) and (max-width: $tablet) {
-      width: 80%;
+      width: 100%;
       padding-top: 2rem;
 
       .coins-thead {
-        width: 100%;
-
         .coins-tr {
-          width: 100%;
           display: flex;
 
           .coins-th {
@@ -452,12 +489,12 @@ $desktop: 1440px;
             align-items: flex-end;
           }
 
-          .coins-money-krw {
+          .coins-day-percent {
             align-items: flex-end;
           }
 
-          .coins-day-percent {
-            align-items: flex-end;
+          .coins-money-krw {
+            display: none;
           }
 
           .coins-day-volume-krw {
@@ -475,12 +512,7 @@ $desktop: 1440px;
       }
 
       .coins-tbody {
-        width: 100%;
-
         .coins-tr {
-          width: 100%;
-          display: flex;
-
           .coins-td {
             flex: 1;
             font-size: 1rem;
@@ -511,12 +543,12 @@ $desktop: 1440px;
             text-align: right;
           }
 
-          .coins-money-krw {
+          .coins-day-percent {
             text-align: right;
           }
 
-          .coins-day-percent {
-            text-align: right;
+          .coins-money-krw {
+            display: none;
           }
 
           .coins-day-volume-krw {
@@ -535,16 +567,11 @@ $desktop: 1440px;
     }
 
     @media screen and (min-width: $tablet + 1px) and (max-width: $labtop) {
-      width: 80%;
+      width: 720px;
       padding-top: 2rem;
 
       .coins-thead {
-        width: 100%;
-
         .coins-tr {
-          width: 100%;
-          display: flex;
-
           .coins-th {
             display: flex;
             flex-direction: column;
@@ -577,16 +604,16 @@ $desktop: 1440px;
             align-items: flex-end;
           }
 
-          .coins-money-krw {
-            align-items: flex-end;
-          }
-
           .coins-day-percent {
             align-items: flex-end;
           }
 
           .coins-day-volume-usd {
             align-items: flex-end;
+          }
+
+          .coins-money-krw {
+            display: none;
           }
 
           .coins-day-volume-krw {
@@ -600,12 +627,7 @@ $desktop: 1440px;
       }
 
       .coins-tbody {
-        width: 100%;
-
         .coins-tr {
-          width: 100%;
-          display: flex;
-
           .coins-td {
             flex: 1;
             font-size: 1rem;
@@ -636,16 +658,16 @@ $desktop: 1440px;
             text-align: right;
           }
 
-          .coins-money-krw {
-            text-align: right;
-          }
-
           .coins-day-percent {
             text-align: right;
           }
 
           .coins-day-volume-usd {
             text-align: right;
+          }
+
+          .coins-money-krw {
+            display: none;
           }
 
           .coins-day-volume-krw {
@@ -664,12 +686,7 @@ $desktop: 1440px;
       padding-top: 2rem;
 
       .coins-thead {
-        width: 100%;
-
         .coins-tr {
-          width: 100%;
-          display: flex;
-
           .coins-th {
             display: flex;
             flex-direction: column;
@@ -725,12 +742,7 @@ $desktop: 1440px;
       }
 
       .coins-tbody {
-        width: 100%;
-
         .coins-tr {
-          width: 100%;
-          display: flex;
-
           .coins-td {
             flex: 1;
             font-size: 1.1rem;
@@ -789,12 +801,7 @@ $desktop: 1440px;
       padding-top: 2rem;
 
       .coins-thead {
-        width: 100%;
-
         .coins-tr {
-          width: 100%;
-          display: flex;
-
           .coins-th {
             display: flex;
             flex-direction: column;
@@ -848,12 +855,7 @@ $desktop: 1440px;
       }
 
       .coins-tbody {
-        width: 100%;
-
         .coins-tr {
-          width: 100%;
-          display: flex;
-
           .coins-td {
             flex: 1;
             font-size: 1.1rem;
@@ -1006,4 +1008,8 @@ $desktop: 1440px;
 
 .blue {
   color: blue;
+}
+
+.selected {
+  font-weight: bold;
 }

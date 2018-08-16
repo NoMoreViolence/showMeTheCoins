@@ -2,14 +2,30 @@
   <table class="coins-table">
     <thead class="coins-thead">
       <tr class="coins-tr">
-        <th class="coins-th coins-symbol"><span>Symbol</span></th>
-        <th class="coins-th coins-market-cap"><span>Market Cap $</span></th>
-        <th class="coins-th coins-money-usd"><span>Currnet $</span></th>
-        <th class="coins-th coins-money-krw"><span>Current W</span></th>
-        <th class="coins-th coins-day-volume-usd"><span>Day Volume $</span></th>
-        <th class="coins-th coins-day-volume-krw"><span>Day Volume W</span></th>
-        <th class="coins-th coins-hour-percent"><span>Hour Per</span></th>
-        <th class="coins-th coins-day-percent"><span>Day Per</span></th>
+        <th class="coins-th coins-symbol" (click)="store.changeUserChoice(['symbol'])">
+          <span>Symbol</span>
+        </th>
+        <th class="coins-th coins-market-cap" (click)="store.changeUserChoice(['quotes', 'USD', 'market_cap'])">
+          <span>Market Cap $</span>
+        </th>
+        <th class="coins-th coins-money-usd" (click)="store.changeUserChoice(['quotes', 'USD', 'price'])">
+          <span>Currnet $</span>
+        </th>
+        <th class="coins-th coins-money-krw" (click)="store.changeUserChoice(['quotes', 'KRW', 'price'])">
+          <span>Current W</span>
+        </th>
+        <th class="coins-th coins-day-volume-usd" (click)="store.changeUserChoice(['quotes', 'USD', 'volume_24h'])">
+          <span>Day Volume $</span>
+        </th>
+        <th class="coins-th coins-day-volume-krw" (click)="store.changeUserChoice(['quotes', 'KRW', 'volume_24h'])">
+          <span>Day Volume W</span>
+        </th>
+        <th class="coins-th coins-hour-percent" (click)="store.changeUserChoice(['quotes', 'USD', 'percent_change_1h'])">
+          <span>Hour Per</span>
+        </th>
+        <th class="coins-th coins-day-percent" (click)="store.changeUserChoice(['quotes', 'USD', 'percent_change_24h'])">
+          <span>Day Per</span>
+        </th>
       </tr>
     </thead>
     <tbody class="coins-tbody">
