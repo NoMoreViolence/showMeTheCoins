@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 import { Store } from 'src/app/store.service';
 
 @Component({
@@ -6,8 +6,10 @@ import { Store } from 'src/app/store.service';
   templateUrl: './coins.component.html',
   styleUrls: ['./coins.component.scss']
 })
-export class CoinsComponent implements OnInit {
+export class CoinsComponent implements AfterViewInit {
   constructor(private store: Store) {}
 
-  ngOnInit() {}
+  ngAfterViewInit() {
+    this.store.setScroll(this.store.scroll[this.store.urlNumber || 0]);
+  }
 }
