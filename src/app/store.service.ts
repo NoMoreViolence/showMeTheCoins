@@ -4,36 +4,24 @@ import { ViewportScroller } from '@angular/common';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
-import { CoinUnit, UrlData, ScrollData } from 'src/interfaces';
+import { CoinUnit } from 'src/interfaces';
 import { concat, makeArray } from 'src/functions';
 
 @Injectable()
 class Store {
-  // All coin data
-  public allCoinData: CoinUnit[] = [];
-  // Sorted coin data
-  public sortedCoinData: CoinUnit[] = [];
-  // Search input
-  public searchInput = '';
-  // User Sort Choice
-  public userChoice = 'market_cap';
+  public allCoinData: CoinUnit[] = []; // All coin data
+  public sortedCoinData: CoinUnit[] = []; // Sorted coin data
+  public searchInput = ''; // Search input
+  public userChoice = ['quotes', 'USD', 'market_cap']; // User Sort Choice
 
-  // request coin number
-  public loaded = 1;
-  // Request pending value
-  public pending = false;
-  // Request button, if user get all coin value, Become button that can not be clicked
-  public showMoreButton = true;
+  public loaded = 1; // request coin number
+  public pending = false; // Request pending value
+  public showMoreButton = true; // Request button, if user get all coin value, Become button that can not be clicked
 
-  // URL + SCROLL Value
-  public urlScroll: UrlData[] = [];
-  // Url number
-  public urlNumber = 0;
-
-  // Scroll value
-  public tempScroll: [number, number] | null = null;
-  // Current Url
-  public url = [];
+  public urlNumber = 0; // url Number
+  public url = []; // Current Url
+  public scroll: [number, number][] = []; // Current Scroll value
+  public tempScroll: [number, number] | null = null; // Temp scroll value
 
   constructor(
     private http: HttpClient,
@@ -43,8 +31,8 @@ class Store {
   ) {}
 
   // Toast Message
-  giveMessage(message: string, type: string): void {
-    this.toast[type](message);
+  giveMessage(message: string, type: string) {
+    return this.toast[type](message);
   }
 
   // Go to prev page
@@ -54,13 +42,19 @@ class Store {
     }
 
     this.urlNumber -= 1;
-    // Get current scroll value
-    this.getCurrentScroll();
     // First, Change Url, Second, set scroll before url moved, Third, change url array info
-    this.router.navigateByUrl(this.url[this.urlNumber || 0]).then(() => {
-      // set scroll
-      this.setScroll();
-    });
+    this.router.navigateByUrl(this.url[this.urlNumber || 0]);
+  }
+
+  // Go to next page
+  goToPrevOrNext() {
+    if (!this.url[this.urlNumber + 1]) {
+      return this.giveMessage('There is no next page !', 'info');
+    }
+
+    this.urlNumber += 1;
+    // First, Change Url, Second, set scroll before url moved, Third, change url array info
+    this.router.navigateByUrl(this.url[this.urlNumber || 0]);
   }
 
   // Change URL method
@@ -73,57 +67,29 @@ class Store {
 
     if (nextLocation !== this.url[this.urlNumber]) {
       // Get current scroll value
-      this.getCurrentScroll();
+      this.scroll[this.urlNumber || 0] = this.getCurrentScroll();
       // First, Change Url, Second, set scroll before url moved, Third, change url array info
       this.router.navigateByUrl(`${nextLocation}`).then(() => {
-        // set scroll
-        this.setScroll();
-        // set current url
-        this.urlNumber += 1;
+        this.setScroll(this.scroll[this.urlNumber || 0]); // set scroll
+
+        this.urlNumber += 1; // set current url
         this.url[this.urlNumber || 0] = this.router.url;
-        // reset next url infomation
-        this.url.length = this.urlNumber + 1;
+        this.url.length = this.urlNumber + 1; // reset next url infomation
       });
     }
   }
 
-  // Go to next page
-  goToNextPage() {
-    if (!this.url[this.urlNumber + 1]) {
-      return this.giveMessage('There is no next page !', 'info');
-    }
-
-    this.urlNumber += 1;
-    // Get current scroll value
-    this.getCurrentScroll();
-    // First, Change Url, Second, set scroll before url moved, Third, change url array info
-    this.router.navigateByUrl(this.url[this.urlNumber || 0]).then(() => {
-      // set scroll
-      this.setScroll();
-    });
-  }
-
   // Get current scroll value
-  getCurrentScroll(): void {
+  getCurrentScroll() {
     this.tempScroll = this.viewportScroller.getScrollPosition();
+    return this.tempScroll;
   }
 
   // Setting scroll value
-  setScroll(data: [number, number]): void {
-    this.viewportScroller.scrollToPosition(data);
-  }
+  setScroll = (value: [number, number]) => (!value ? console.log('first loading') : this.viewportScroller.scrollToPosition(value));
 
-  // Change search bar input
-  changeInput(event: any): void {
-    // Input change
-    this.searchInput = event.target.value;
-    // Sort data
-    this.sortCoinDataByKey();
-    // If user click enter key, go to coins component
-    if (event.keyCode === 13 && this.searchInput !== '') {
-      this.goToSomeWhere();
-    }
-  }
+  // Get coins
+  getCoins = (startNumber?: number) => this.http.get(`https://api.coinmarketcap.com/v2/ticker/?convert=KRW&start=${startNumber || 1}`);
 
   // Load coin data
   loadCoinData(message?: string) {
@@ -172,19 +138,40 @@ class Store {
 
   // Sort Coin List By User's choice
   sortCoinDataByUserChoice() {
-    this.sortedCoinData = this.allCoinData.sort((objectOne: CoinUnit, objectTwo: CoinUnit) => {
-      return objectTwo.quotes.USD[this.userChoice] - objectOne.quotes.USD[this.userChoice];
-    });
+    this.sortedCoinData = this.allCoinData.sort(
+      (objectOne: CoinUnit, objectTwo: CoinUnit) =>
+        this.userChoice.length === 3
+          ? objectTwo[this.userChoice[0]][this.userChoice[1]][this.userChoice[2]] -
+            objectOne[this.userChoice[0]][this.userChoice[1]][this.userChoice[2]]
+          : objectTwo[this.userChoice[0]] > objectOne[this.userChoice[0]]
+            ? -1
+            : objectTwo[this.userChoice[0]] < objectOne[this.userChoice[0]]
+              ? 1
+              : 0
+    );
   }
   // Change User Choice
-  changeUserChoice(value: any) {
+  changeUserChoice(value: [string, string | undefined, string | undefined]) {
     console.log(value);
-    // this.userChoice = value;
+    console.log(this.userChoice);
+    if (value === this.userChoice) {
+      return;
+    }
+
+    console.log('change');
+    this.userChoice = value.length === 3 ? [value[0], value[1], value[2]] : [value[0]]; // Change user choice
+    return this.sortCoinDataByUserChoice(); // Change all coin data
   }
 
-  // Get coins
-  getCoins(startNumber?: number) {
-    return this.http.get(`https://api.coinmarketcap.com/v2/ticker/?convert=KRW&start=${startNumber || 1}`);
+  // Change search bar input
+  changeInput(event: any) {
+    this.searchInput = event.target.value; // Input change
+    this.sortCoinDataByKey(); // Sort data
+
+    // If user click enter key, go to coins component
+    if (event.keyCode === 13 && this.searchInput !== '') {
+      this.goToSomeWhere();
+    }
   }
 }
 
