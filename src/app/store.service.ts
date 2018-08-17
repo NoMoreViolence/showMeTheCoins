@@ -12,7 +12,8 @@ class Store {
   public allCoinData: CoinUnit[] = []; // All coin data
   public sortedCoinData: CoinUnit[] = []; // Sorted coin data
   public searchInput = ''; // Search input
-  public userChoice = ['quotes', 'USD', 'market_cap']; // User Sort Choice
+  public userChoice: string[] = ['quotes', 'USD', 'market_cap']; // User Sort Choice
+  public prevSortWay = 'primary';
 
   public loaded = 1; // request coin number
   public pending = false; // Request pending value
@@ -47,7 +48,7 @@ class Store {
   }
 
   // Go to next page
-  goToPrevOrNext() {
+  goToNextPage() {
     if (!this.url[this.urlNumber + 1]) {
       return this.giveMessage('There is no next page !', 'info');
     }
@@ -103,8 +104,8 @@ class Store {
     this.getCoins(this.loaded).subscribe(
       (data: { data }): void => {
         this.allCoinData = concat([this.allCoinData, makeArray(data.data)]); // Add coin data
-        this.sortCoinDataByKey(); // Sort Coin Data
-        this.sortCoinDataByUserChoice();
+        this.sortedCoinData = this.allCoinData;
+        this.sortedCoinData = this.sortCoinDataByUserChoice(this.userChoice); // Sort Coin Data:user choice
 
         this.pending = false; // Coin Loaded
         this.loaded += 100; // Up load count
@@ -130,48 +131,61 @@ class Store {
   }
 
   // Sort Coin List By User's key
-  sortCoinDataByKey() {
-    this.sortedCoinData = this.allCoinData.filter(
-      (object: CoinUnit) => object.symbol.toLowerCase().indexOf(this.searchInput.toLowerCase()) > -1
-    );
-  }
+  sortCoinDataByKey = () =>
+    this.sortedCoinData.filter((object: CoinUnit) => object.symbol.toLowerCase().indexOf(this.searchInput.toLowerCase()) > -1);
 
   // Sort Coin List By User's choice
-  sortCoinDataByUserChoice() {
-    this.sortedCoinData = this.allCoinData.sort(
-      (objectOne: CoinUnit, objectTwo: CoinUnit) =>
-        this.userChoice.length === 3
-          ? objectTwo[this.userChoice[0]][this.userChoice[1]][this.userChoice[2]] -
-            objectOne[this.userChoice[0]][this.userChoice[1]][this.userChoice[2]]
-          : objectTwo[this.userChoice[0]] > objectOne[this.userChoice[0]]
-            ? -1
-            : objectTwo[this.userChoice[0]] < objectOne[this.userChoice[0]]
-              ? 1
-              : 0
-    );
-  }
+  sortCoinDataByUserChoice = (value: string[]) =>
+    value[value.length - 1] === 'primary'
+      ? this.sortedCoinData.sort(
+          (objectOne: CoinUnit, objectTwo: CoinUnit) =>
+            this.userChoice.length > 2
+              ? objectTwo[this.userChoice[0]][this.userChoice[1]][this.userChoice[2]] -
+                objectOne[this.userChoice[0]][this.userChoice[1]][this.userChoice[2]]
+              : objectTwo[this.userChoice[0]] > objectOne[this.userChoice[0]]
+                ? -1
+                : objectTwo[this.userChoice[0]] < objectOne[this.userChoice[0]]
+                  ? 1
+                  : 0
+        )
+      : this.sortedCoinData.sort(
+          (objectOne: CoinUnit, objectTwo: CoinUnit) =>
+            this.userChoice.length > 2
+              ? objectOne[this.userChoice[0]][this.userChoice[1]][this.userChoice[2]] -
+                objectTwo[this.userChoice[0]][this.userChoice[1]][this.userChoice[2]]
+              : objectTwo[this.userChoice[0]] > objectOne[this.userChoice[0]]
+                ? 1
+                : objectTwo[this.userChoice[0]] < objectOne[this.userChoice[0]]
+                  ? -1
+                  : 0
+        );
+
   // Change User Choice
-  changeUserChoice(value: [string, string | undefined, string | undefined]) {
-    console.log(value);
-    console.log(this.userChoice);
-    if (value === this.userChoice) {
-      return;
+  changeUserChoice(value: string[]) {
+    // same Check
+    const sameCheck = value.map((obj: string, i: number) => obj === this.userChoice[i]).find((obj: boolean) => obj === false);
+    this.prevSortWay = this.userChoice[this.userChoice.length - 1]; // Prev sort way
+    this.userChoice = value.length === 3 ? [value[0], value[1], value[2]] : [value[0]]; // Change current user choice
+
+    if (sameCheck === undefined) {
+      this.userChoice.push('reverse');
+      return this.sortCoinDataByUserChoice(this.userChoice); // Change all coin data:reverse
     }
 
-    console.log('change');
-    this.userChoice = value.length === 3 ? [value[0], value[1], value[2]] : [value[0]]; // Change user choice
-    return this.sortCoinDataByUserChoice(); // Change all coin data
+    this.userChoice.push('primary');
+    return this.sortCoinDataByUserChoice(this.userChoice); // Change all coin data
   }
 
   // Change search bar input
   changeInput(event: any) {
     this.searchInput = event.target.value; // Input change
-    this.sortCoinDataByKey(); // Sort data
 
     // If user click enter key, go to coins component
     if (event.keyCode === 13 && this.searchInput !== '') {
       this.goToSomeWhere();
     }
+
+    this.sortedCoinData = this.sortCoinDataByKey(); // Sort data
   }
 }
 
