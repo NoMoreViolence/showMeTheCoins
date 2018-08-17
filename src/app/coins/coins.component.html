@@ -3,34 +3,34 @@
     <thead class="coins-thead">
       <tr class="coins-tr">
         <th class="coins-th coins-symbol" (click)="store.changeUserChoice(['symbol'])">
-          <span class="{{ selected(['symbol']) }}">Symbol</span>
+          <span class="{{ selected(['symbol']) }}">Symbol ↕</span>
         </th>
         <th class="coins-th coins-market-cap" (click)="store.changeUserChoice(['quotes', 'USD', 'market_cap'])">
-          <span class="{{ selected(['quotes', 'USD', 'market_cap']) }}">Market Cap $</span>
+          <span class="{{ selected(['quotes', 'USD', 'market_cap']) }}">Market Cap $ ↕</span>
         </th>
         <th class="coins-th coins-money-usd" (click)="store.changeUserChoice(['quotes', 'USD', 'price'])">
-          <span class="{{ selected(['quotes', 'USD', 'price']) }}">Currnet $</span>
+          <span class="{{ selected(['quotes', 'USD', 'price']) }}">Currnet $ ↕</span>
         </th>
         <th class="coins-th coins-money-krw" (click)="store.changeUserChoice(['quotes', 'KRW', 'price'])">
-          <span class="{{ selected(['quotes', 'KRW', price]) }}">Current W</span>
+          <span class="{{ selected(['quotes', 'KRW', 'price']) }}">Current W ↕</span>
         </th>
         <th class=" coins-th coins-day-volume-usd " (click)="store.changeUserChoice([ 'quotes', 'USD', 'volume_24h']) ">
-          <span class="{{ selected(['quotes', 'USD', 'volume_24h']) }}">Day Volume $</span>
+          <span class="{{ selected(['quotes', 'USD', 'volume_24h']) }}">Day Volume $ ↕</span>
         </th>
         <th class="coins-th coins-day-volume-krw " (click)="store.changeUserChoice([ 'quotes', 'KRW', 'volume_24h']) ">
-          <span class="{{ selected(['quotes', 'KRW', 'volume_24h']) }}">Day Volume W</span>
+          <span class="{{ selected(['quotes', 'KRW', 'volume_24h']) }}">Day Volume W ↕</span>
         </th>
         <th class="coins-th coins-hour-percent " (click)="store.changeUserChoice([ 'quotes', 'USD', 'percent_change_1h']) ">
-          <span class="{{ selected(['quotes', 'USD', 'percent_change_1h']) }}">Hour Per</span>
+          <span class="{{ selected(['quotes', 'USD', 'percent_change_1h']) }}">Hour Per ↕</span>
         </th>
         <th class="coins-th coins-day-percent " (click)="store.changeUserChoice([ 'quotes', 'USD', 'percent_change_24h']) ">
-          <span class="{{ selected(['quotes', 'USD', 'percent_change_24h']) }}">Day Per</span>
+          <span class="{{ selected(['quotes', 'USD', 'percent_change_24h']) }}">Day Per ↕</span>
         </th>
       </tr>
     </thead>
     <tbody class="coins-tbody ">
-      <tr class="coins-tr " *ngFor="let coin of store.sortedCoinData " (click)="store.goToSomeWhere( '/coins/' + coin.symbol) ">
-        <td class="coins-td coins-symbol ">
+      <tr class="coins-tr " *ngFor="let coin of store.sortedCoinData" (click)="store.goToSomeWhere( '/coins/' + coin.symbol)">
+        <td class="coins-td coins-symbol">
           {{ coin.symbol }}
         </td>
         <td class="coins-td coins-market-cap ">
@@ -58,7 +58,7 @@
     </tbody>
   </table>
   <!-- Loading spinner -->
-  <app-loading-spinner *ngIf="store.pending===t rue "></app-loading-spinner>
+  <app-loading-spinner *ngIf="store.pending===true "></app-loading-spinner>
   <button class="show-more-button " [disabled]="!store.showMoreButton " (click)="store.loadCoinData() ">
     {{ !store.showMoreButton ? 'No Coins!' : 'Load More...' }}
   </button>

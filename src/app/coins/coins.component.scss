@@ -96,8 +96,8 @@ $desktop: 1440px;
             padding: {
               top: 1rem;
               bottom: 1rem;
-              right: 1rem;
-              left: 1rem;
+              right: 0rem;
+              left: 0rem;
             }
 
             border: {
@@ -149,8 +149,8 @@ $desktop: 1440px;
             padding: {
               top: 1rem;
               bottom: 1rem;
-              right: 1rem;
-              left: 1rem;
+              right: 0rem;
+              left: 0rem;
             }
 
             border: {
@@ -219,8 +219,8 @@ $desktop: 1440px;
             padding: {
               top: 1rem;
               bottom: 1rem;
-              right: 1rem;
-              left: 1rem;
+              right: 0.5rem;
+              left: 0.5rem;
             }
 
             border: {
@@ -579,8 +579,8 @@ $desktop: 1440px;
             padding: {
               top: 1.5rem;
               bottom: 1.5rem;
-              right: 0.5rem;
-              left: 0.5rem;
+              right: 0rem;
+              left: 0rem;
             }
 
             border: {
@@ -679,7 +679,7 @@ $desktop: 1440px;
     }
 
     @media screen and (min-width: $labtop + 1px) and (max-width: $desktop) {
-      width: 70%;
+      width: 900px;
       padding-top: 2rem;
 
       .coins-thead {
@@ -794,7 +794,7 @@ $desktop: 1440px;
     }
 
     @media screen and (min-width: $desktop + 1px) {
-      width: 70%;
+      width: 1050px;
       padding-top: 2rem;
 
       .coins-thead {
@@ -1008,6 +1008,7 @@ $desktop: 1440px;
 }
 
 .selected {
+  @include transition();
   font: {
     size: 1.2rem;
     weight: bold;
