@@ -6,7 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { routing } from './app.routing';
 
 import { Store } from './store.service';
-import { ChangeToColorPipe, ComaToNumberPipe, SortByChoicePipe } from './pipes';
+import { ChangeToColorPipe, ComaToNumberPipe } from './pipes';
 
 import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
@@ -27,7 +27,6 @@ import { ToastrModule } from 'ngx-toastr';
   declarations: [
     ChangeToColorPipe,
     ComaToNumberPipe,
-    SortByChoicePipe,
     AppComponent,
     MainComponent,
     SearchBarComponent,
