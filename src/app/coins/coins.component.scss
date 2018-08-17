@@ -30,12 +30,9 @@ $desktop: 1440px;
         display: flex;
 
         .coins-th {
+          font-weight: 300;
           @include transition();
         }
-
-        // .coins-symbol.coins-money-usd.coins-market-cap.coins-money-usd.coins-day-percent.coins-money-krw.coins-day-volume-krw.coins-day-volume-usd.coins-hour-percent {
-        //   background-color: rgb(241, 241, 241);
-        // }
 
         .coins-symbol:hover {
           background-color: rgb(241, 241, 241);
@@ -1011,5 +1008,8 @@ $desktop: 1440px;
 }
 
 .selected {
-  font-weight: bold;
+  font: {
+    size: 1.2rem;
+    weight: bold;
+  }
 }
