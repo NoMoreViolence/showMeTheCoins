@@ -193,7 +193,8 @@ class Store {
       this.goToSomeWhere();
     }
 
-    this.sortedCoinData = this.sortCoinDataByKey(this.sortedCoinData, this.searchInput); // Sort data
+    this.sortedCoinData = this.sortCoinDataByKey(this.allCoinData, this.searchInput); // Sort data
+    this.sortedCoinData = this.sortCoinDataByUserChoice(this.userChoice);
   }
 }
 
