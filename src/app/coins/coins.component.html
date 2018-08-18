@@ -29,7 +29,7 @@
       </tr>
     </thead>
     <tbody class="coins-tbody ">
-      <tr class="coins-tr " *ngFor="let coin of store.sortedCoinData" (click)="store.goToSomeWhere( '/coins/' + coin.symbol)">
+      <tr class="coins-tr" *ngFor="let coin of store.sortedCoinData" (click)="store.goToSomeWhere( '/coins/' + coin.symbol)">
         <td class="coins-td coins-symbol">
           {{ coin.symbol }}
         </td>

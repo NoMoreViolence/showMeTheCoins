@@ -31,6 +31,7 @@ $desktop: 1440px;
 
         .coins-th {
           font-weight: 300;
+          cursor: pointer;
           @include transition();
         }
 
