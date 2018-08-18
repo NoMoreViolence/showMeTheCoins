@@ -14,5 +14,7 @@ export class CoinsComponent implements AfterViewInit {
       ? 'selected'
       : '';
 
-  ngAfterViewInit = () => this.store.setScroll(this.store.scroll[this.store.urlNumber || 0]);
+  ngAfterViewInit() {
+    this.store.setScroll(this.store.scroll[this.store.urlNumber || 0]);
+  }
 }
