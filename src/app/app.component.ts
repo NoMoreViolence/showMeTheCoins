@@ -9,8 +9,5 @@ import { Store } from './store.service';
 export class AppComponent implements OnInit {
   constructor(private store: Store) {}
 
-  ngOnInit() {
-    // First loading
-    this.store.loadCoinData('환영합니다 !');
-  }
+  ngOnInit() {}
 }
