@@ -58,8 +58,8 @@
     </tbody>
   </table>
   <!-- Loading spinner -->
-  <app-loading-spinner *ngIf="store.pending===true "></app-loading-spinner>
-  <button class="show-more-button " [disabled]="!store.showMoreButton " (click)="store.loadCoinData() ">
+  <app-loading-spinner *ngIf="store.allCoinDataPending === true "></app-loading-spinner>
+  <button class="show-more-button " [disabled]="!store.showMoreButton " (click)="store.loadAllCoinData()">
     {{ !store.showMoreButton ? 'No Coins!' : 'Load More...' }}
   </button>
 </div>

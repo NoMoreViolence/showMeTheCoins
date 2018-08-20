@@ -1,3 +1,44 @@
+// size
+$zero: 0px;
+$small-phone: 320px;
+$middle-phone: 375px;
+$big-phone: 425px;
+$tablet: 768px;
+$labtop: 1024px;
+$desktop: 1440px;
+
 .selected-container {
   width: 100%;
+  display: flex;
+  justify-content: center;
+
+  .selected {
+    @media screen and (min-width: $zero) and (max-width: $small-phone) {
+      width: 100%;
+    }
+
+    @media screen and (min-width: $small-phone + 1px) and (max-width: $middle-phone) {
+      width: 100%;
+    }
+
+    @media screen and (min-width: $middle-phone + 1px) and (max-width: $big-phone) {
+      width: 100%;
+    }
+
+    @media screen and (min-width: $big-phone + 1px) and (max-width: $tablet) {
+      width: 100%;
+    }
+
+    @media screen and (min-width: $tablet + 1px) and (max-width: $labtop) {
+      width: 720px;
+    }
+
+    @media screen and (min-width: $labtop + 1px) and (max-width: $desktop) {
+      width: 900px;
+    }
+
+    @media screen and (min-width: $desktop + 1px) {
+      width: 1050px;
+    }
+  }
 }

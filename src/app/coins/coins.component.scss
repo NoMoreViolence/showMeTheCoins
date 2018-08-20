@@ -449,7 +449,10 @@ $desktop: 1440px;
 
     @media screen and (min-width: $big-phone + 1px) and (max-width: $tablet) {
       width: 100%;
-      padding-top: 2rem;
+      padding: {
+        top: 2rem;
+        bottom: 1rem;
+      }
 
       .coins-thead {
         .coins-tr {
@@ -566,7 +569,10 @@ $desktop: 1440px;
 
     @media screen and (min-width: $tablet + 1px) and (max-width: $labtop) {
       width: 720px;
-      padding-top: 2rem;
+      padding: {
+        top: 2rem;
+        bottom: 1rem;
+      }
 
       .coins-thead {
         .coins-tr {
@@ -681,7 +687,10 @@ $desktop: 1440px;
 
     @media screen and (min-width: $labtop + 1px) and (max-width: $desktop) {
       width: 900px;
-      padding-top: 2rem;
+      padding: {
+        top: 2rem;
+        bottom: 1rem;
+      }
 
       .coins-thead {
         .coins-tr {
@@ -796,7 +805,10 @@ $desktop: 1440px;
 
     @media screen and (min-width: $desktop + 1px) {
       width: 1050px;
-      padding-top: 2rem;
+      padding: {
+        top: 2rem;
+        bottom: 1rem;
+      }
 
       .coins-thead {
         .coins-tr {

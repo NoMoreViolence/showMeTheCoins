@@ -135,12 +135,13 @@
 /* default desktop */
 @media only screen and (min-width: 1025px) and (max-width: 1440px) {
   .menu-table {
-    width: 950px;
+    width: 900px;
     padding-top: 2rem;
   }
 
   .menu-tr th {
     flex: 1;
+    font-size: 2rem;
     text-align: center;
     padding: 1rem;
     border-top: 1px solid black;

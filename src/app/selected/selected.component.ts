@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Store } from 'src/app/store.service';
+import { of } from 'rxjs';
+
+import { CoinUnit } from 'src/interfaces';
 
 @Component({
   selector: 'app-selected',
@@ -7,7 +11,10 @@ import { Store } from 'src/app/store.service';
   styleUrls: ['./selected.component.scss']
 })
 export class SelectedComponent implements OnInit {
-  constructor(private store: Store) {}
+  constructor(private store: Store, private router: Router) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.store.selectOneCoin(this.router.url.split('/')[2]);
+    this.store.loadSelectedCoinData(this.store.selectedCoinSymbol);
+  }
 }
