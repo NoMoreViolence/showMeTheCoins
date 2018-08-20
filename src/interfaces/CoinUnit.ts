@@ -1,4 +1,4 @@
-import MoneyData from './MoneyData';
+import CoinUnitMoney from './CoinUnitMoney';
 
 interface CoinUnit {
   circulating_supply: number;
@@ -6,7 +6,7 @@ interface CoinUnit {
   last_updated: number;
   max_supply: number;
   name: string;
-  quotes: { USD: MoneyData; KRW: MoneyData };
+  quotes: { USD: CoinUnitMoney; KRW: CoinUnitMoney };
   rank: number;
   symbol: string;
   total_supply: number;

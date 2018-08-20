@@ -1,3 +1,4 @@
 import CoinUnit from './CoinUnit';
+import SelectedCoin from './SelectedCoin';
 
-export { CoinUnit };
+export { CoinUnit, SelectedCoin };
