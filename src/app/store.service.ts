@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { ViewportScroller } from '@angular/common';
 import { Router } from '@angular/router';
-import { map, concat } from 'rxjs/operators';
+import { forkJoin } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { EventManager } from '@angular/platform-browser';
 import { ToastrService } from 'ngx-toastr';
 
-import { CoinUnit } from 'src/interfaces';
-// import { concat } from 'src/functions';
+import { CoinUnit, SelectedCoin } from 'src/interfaces';
 
 @Injectable()
 class Store {
@@ -22,7 +22,9 @@ class Store {
   public prevSortWay = 'primary';
 
   // Selected coin data
-  public selectedCoinSymbol = '';
+  public selectedCoinPending = false; // Request pending value
+  public selectedCoinSymbol = ''; // Selected Coin symbol data
+  public selectedCoinData: SelectedCoin[] = []; // Selected Coin data
 
   // Url & Scroll
   public urlNumber = 0; // url Number
@@ -46,27 +48,31 @@ class Store {
     this.browerHeight = window.innerHeight;
   }
 
-  getSelectedCoinData = (coinSymbol: string, exchange: string) =>
-    this.http.get(`https://min-api.cryptocompare.com/data/top/exchanges/full?fsym=${coinSymbol}&tsym=${exchange}`);
+  selectOneCoin = (value: string) => (this.selectedCoinSymbol = value);
+  getSelectedCoinData = (coinSymbol: string) =>
+    forkJoin([
+      this.http.get(`https://min-api.cryptocompare.com/data/top/exchanges/full?fsym=${coinSymbol}&tsym=KRW`),
+      this.http.get(`https://min-api.cryptocompare.com/data/top/exchanges/full?fsym=${coinSymbol}&tsym=USD`),
+      this.http.get(`https://min-api.cryptocompare.com/data/top/exchanges/full?fsym=${coinSymbol}&tsym=BTC`)
+    ]);
   loadSelectedCoinData = (coinSymbol: string) => {
-    const selectedCoin: any = {};
-    this.getSelectedCoinData(coinSymbol, 'KRW').subscribe(data => {
-      selectedCoin.KRW = data;
-    });
-    this.getSelectedCoinData(coinSymbol, 'USD').subscribe(data => {
-      selectedCoin.USD = data;
-    });
-    this.getSelectedCoinData(coinSymbol, 'BTC').subscribe(data => {
-      selectedCoin.BTC = data;
-    });
+    this.selectedCoinPending = true; // Pending
 
-    console.log(selectedCoin);
+    this.getSelectedCoinData(coinSymbol).subscribe(
+      (value: [SelectedCoin, SelectedCoin, SelectedCoin]) => {
+        this.selectedCoinPending = false; // Pending
+        this.selectedCoinData = value;
+      },
+      (err: HttpErrorResponse) => {
+        this.selectedCoinPending = false; // Pending
+        this.giveMessage('인터넷 연결 문제가 발생했습니다 !', 'error');
+      }
+    );
   };
-  getAllCoinData = (startNumber?: number) => {
-    return this.http
+  getAllCoinData = (startNumber?: number) =>
+    this.http
       .get(`https://api.coinmarketcap.com/v2/ticker/?convert=KRW&start=${startNumber || 1}&structure=array`)
       .pipe(map((data: { data: CoinUnit[] }) => [...data.data, ...this.allCoinData])); // Data sort;
-  };
   loadAllCoinData = (message?: string) => {
     // Handle pending error
     if (this.allCoinDataPending === true) {
@@ -159,11 +165,6 @@ class Store {
 
     // Sort Data
     this.sortedCoinData = this.sortCoinDataByUserChoice(this.sortCoinDataByKey(this.allCoinData, this.searchInput), this.userChoice);
-  };
-
-  selectOneCoin = (value: string) => {
-    console.log(value);
-    this.selectedCoinSymbol = value;
   };
 
   // Go to prev page
