@@ -22,6 +22,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 // Toast
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { MoreButtonComponent } from './more-button/more-button.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { ToastrModule } from 'ngx-toastr';
     SelectedComponent,
     CoinModelComponent,
     UnderComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    MoreButtonComponent
   ],
   imports: [BrowserModule, RouterModule, routing, HttpClientModule, BrowserAnimationsModule, ToastrModule.forRoot()],
   providers: [Store],
