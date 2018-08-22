@@ -18,8 +18,40 @@ $desktop: 1440px;
     @media screen and (min-width: $zero) and (max-width: $small-phone) {
       width: 100%;
 
-      .selected-symbol {
-        width: 100%;
+      .selected-name {
+        width: calc(100% - 2rem);
+        padding: 1rem;
+
+        .selected-symbol-image {
+          width: 100%;
+          display: flex;
+
+          h1 {
+            flex: 1;
+          }
+
+          img {
+            width: 80px;
+            height: 80px;
+          }
+        }
+      }
+
+      .selected-profile {
+        width: calc(100% - 2rem);
+        display: flex;
+        padding: 1rem;
+
+        .selected-profile-name {
+          flex: 0.65;
+          display: flex;
+          flex-direction: column;
+        }
+        .selected-profile-value {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+        }
       }
     }
 

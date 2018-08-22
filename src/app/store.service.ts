@@ -3,11 +3,11 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { ViewportScroller } from '@angular/common';
 import { Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
-import { map, filter } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { EventManager } from '@angular/platform-browser';
 import { ToastrService } from 'ngx-toastr';
 
-import { CoinUnit, SelectedCoin, SelectedCoinInfo } from 'src/interfaces';
+import { CoinUnit, SelectedCoin } from 'src/interfaces';
 
 @Injectable()
 class Store {
@@ -25,7 +25,8 @@ class Store {
   public selectedCoinPending = false; // Request pending value
   public selectedCoinSymbol = ''; // Selected Coin symbol data
   public selectedCoinData: SelectedCoin[] = []; // Selected Coin data
-  public selectedCoinInfo: SelectedCoinInfo;
+  public selectedCoinInfo: SelectedCoin;
+  public selectedCoinImageUrl = '';
 
   // Url & Scroll
   public urlNumber = 0; // url Number
@@ -55,16 +56,16 @@ class Store {
       this.http.get(`https://min-api.cryptocompare.com/data/top/exchanges/full?fsym=${coinSymbol}&tsym=BTC`),
       this.http.get(`https://min-api.cryptocompare.com/data/top/exchanges/full?fsym=${coinSymbol}&tsym=KRW`),
       this.http.get(`https://min-api.cryptocompare.com/data/top/exchanges/full?fsym=${coinSymbol}&tsym=USD`)
-    ]).pipe(filter((data: SelectedCoin) => data.Response === 'Success'));
+    ]);
   loadSelectedCoinData = (coinSymbol: string) => {
     this.selectedCoinPending = true; // Pending
 
     this.getSelectedCoinData(coinSymbol).subscribe(
       (value: [SelectedCoin, SelectedCoin, SelectedCoin]) => {
         this.selectedCoinPending = false; // Pending
-        this.selectedCoinData = value;
-        this.selectedCoinInfo = this.selectedCoinData.find((data: SelectedCoin) => data.Response === 'Success').Data.CoinInfo;
-        console.log(this.selectedCoinData);
+        this.selectedCoinData = value.filter((data: SelectedCoin) => data.Response === 'Success'); // Data in
+        this.selectedCoinInfo = this.selectedCoinData.find((data: SelectedCoin) => data.Response === 'Success'); // Coin info in
+        console.log(this.selectedCoinInfo);
       },
       (err: HttpErrorResponse) => {
         this.selectedCoinPending = false; // Pending

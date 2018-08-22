@@ -1,6 +1,4 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { Router } from '@angular/router';
-
 import { Store } from 'src/app/store.service';
 
 @Component({
