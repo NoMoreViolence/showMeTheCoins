@@ -1,12 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { Store } from 'src/app/store.service';
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })
-export class MainComponent implements OnInit {
-  constructor() {}
+export class MainComponent implements AfterViewInit {
+  @ViewChild('main')
+  main: ElementRef;
+  constructor(private store: Store) {}
 
-  ngOnInit() {}
+  ngAfterViewInit() {
+    this.store.setResizeElement(this.main);
+  }
 }
