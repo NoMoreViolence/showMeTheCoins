@@ -1,0 +1,115 @@
+// size
+$zero: 0px;
+$small-phone: 320px;
+$middle-phone: 375px;
+$big-phone: 425px;
+$tablet: 768px;
+$labtop: 1024px;
+$desktop: 1440px;
+
+@mixin transition() {
+  transition: all 0.1s ease-in-out;
+  -webkit-transition: all 0.1s ease-in-out;
+  -moz-transition: all 0.1s ease-in-out;
+  -ms-transition: all 0.1s ease-in-out;
+  -o-transition: all 0.1s ease-in-out;
+}
+
+.button-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  .show-more-button {
+    text-align: center;
+    outline: none;
+    border: none;
+    background-color: rgb(241, 241, 241);
+    @include transition();
+
+    &:hover {
+      background-color: #f7f7f7;
+    }
+
+    &:active {
+      transform: translateY(4px);
+    }
+
+    @media screen and (min-width: $zero) and (max-width: $small-phone) {
+      width: 70%;
+      padding: 1rem;
+
+      margin: {
+        top: 1rem;
+        bottom: 1rem;
+      }
+      font-size: 1.3rem;
+    }
+
+    @media screen and (min-width: $small-phone + 1px) and (max-width: $middle-phone) {
+      width: 70%;
+      padding: 1rem;
+
+      margin: {
+        top: 1.5rem;
+        bottom: 1rem;
+      }
+      font-size: 1.5rem;
+    }
+
+    @media screen and (min-width: $middle-phone + 1px) and (max-width: $big-phone) {
+      width: 70%;
+      padding: 1rem;
+
+      margin: {
+        top: 1.5rem;
+        bottom: 1rem;
+      }
+      font-size: 1.5rem;
+    }
+
+    @media screen and (min-width: $big-phone + 1px) and (max-width: $tablet) {
+      width: 60%;
+      padding: 1rem;
+
+      margin: {
+        top: 1.5rem;
+        bottom: 1rem;
+      }
+      font-size: 1.5rem;
+    }
+
+    @media screen and (min-width: $tablet + 1px) and (max-width: $labtop) {
+      width: 50%;
+      padding: 1rem;
+
+      margin: {
+        top: 1.5rem;
+        bottom: 1rem;
+      }
+      font-size: 1.5rem;
+    }
+
+    @media screen and (min-width: $labtop + 1px) and (max-width: $desktop) {
+      width: 50%;
+      padding: 1rem;
+
+      margin: {
+        top: 1.5rem;
+        bottom: 1rem;
+      }
+      font-size: 1.5rem;
+    }
+
+    @media screen and (min-width: $desktop + 1px) {
+      width: 50%;
+      padding: 1rem;
+
+      margin: {
+        top: 1.5rem;
+        bottom: 1rem;
+      }
+      font-size: 1.5rem;
+    }
+  }
+}
