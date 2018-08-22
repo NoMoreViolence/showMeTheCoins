@@ -1,8 +1,16 @@
 <div class="selected-container">
-  <div class="selected">
-    <div class="coin-name">
-      {{ store.selectedCoinData }}
+  <app-loading-spinner *ngIf="store.selectedCoinPending" class="loading-bar"></app-loading-spinner>
+  <div *ngIf="!store.selectedCoinPending" class="selected-model">
+    <div class="selected-symbol">
+      <h1>
+      </h1>
     </div>
-    <div>hello</div>
+    <div class="selected-data">
+      <div *ngFor="let select of store.selectedCoinData">
+        <div class="coin-name">
+          {{ select.Data.AggregatedData.TOSYMBOL }}
+        </div>
+      </div>
+    </div>
   </div>
 </div>

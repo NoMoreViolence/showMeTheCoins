@@ -1,20 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Store } from 'src/app/store.service';
-import { of } from 'rxjs';
 
-import { CoinUnit } from 'src/interfaces';
+import { Store } from 'src/app/store.service';
 
 @Component({
   selector: 'app-selected',
   templateUrl: './selected.component.html',
   styleUrls: ['./selected.component.scss']
 })
-export class SelectedComponent implements OnInit {
-  constructor(private store: Store, private router: Router) {}
+export class SelectedComponent implements OnInit, AfterViewInit {
+  constructor(private store: Store) {}
 
   ngOnInit() {
-    this.store.selectOneCoin(this.router.url.split('/')[2]);
-    this.store.loadSelectedCoinData(this.store.selectedCoinSymbol);
+    if (this.store.selectedCoinSymbol !== this.store.getCurrentUrl().split('/')[2]) {
+      this.store.selectOneCoin(this.store.getCurrentUrl().split('/')[2]);
+      this.store.loadSelectedCoinData(this.store.selectedCoinSymbol);
+    }
+  }
+
+  ngAfterViewInit() {
+    if (this.store.prevOrNext === true) {
+      this.store.setScroll(this.store.scroll[this.store.urlNumber || 0]);
+    } else {
+      this.store.setScroll([this.store.mainWidth, this.store.mainHeight]);
+    }
   }
 }

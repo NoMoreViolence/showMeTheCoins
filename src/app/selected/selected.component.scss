@@ -9,12 +9,18 @@ $desktop: 1440px;
 
 .selected-container {
   width: 100%;
+  min-height: 100vh;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 
-  .selected {
+  .selected-model {
     @media screen and (min-width: $zero) and (max-width: $small-phone) {
       width: 100%;
+
+      .selected-symbol {
+        width: 100%;
+      }
     }
 
     @media screen and (min-width: $small-phone + 1px) and (max-width: $middle-phone) {
@@ -40,5 +46,9 @@ $desktop: 1440px;
     @media screen and (min-width: $desktop + 1px) {
       width: 1050px;
     }
+  }
+
+  .loading-bar {
+    width: 100%;
   }
 }
