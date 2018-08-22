@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, ElementRef } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { ViewportScroller } from '@angular/common';
 import { Router } from '@angular/router';
@@ -30,10 +30,12 @@ class Store {
   public urlNumber = 0; // url Number
   public url = []; // Current Url
   public scroll: [number, number][] = []; // Current Scroll value
+  public prevOrNext = false;
 
-  // width
-  public browerWidth = 0;
-  public browerHeight = 0;
+  // Main div infomation
+  public mainDiv: ElementRef;
+  public mainWidth = 0;
+  public mainHeight = 0;
 
   constructor(
     private http: HttpClient,
@@ -44,16 +46,14 @@ class Store {
   ) {
     // First loading
     this.eventManager.addGlobalEventListener('window', 'resize', this.onResize);
-    this.browerWidth = window.innerWidth;
-    this.browerHeight = window.innerHeight;
   }
 
   selectOneCoin = (value: string) => (this.selectedCoinSymbol = value);
   getSelectedCoinData = (coinSymbol: string) =>
     forkJoin([
+      this.http.get(`https://min-api.cryptocompare.com/data/top/exchanges/full?fsym=${coinSymbol}&tsym=BTC`),
       this.http.get(`https://min-api.cryptocompare.com/data/top/exchanges/full?fsym=${coinSymbol}&tsym=KRW`),
-      this.http.get(`https://min-api.cryptocompare.com/data/top/exchanges/full?fsym=${coinSymbol}&tsym=USD`),
-      this.http.get(`https://min-api.cryptocompare.com/data/top/exchanges/full?fsym=${coinSymbol}&tsym=BTC`)
+      this.http.get(`https://min-api.cryptocompare.com/data/top/exchanges/full?fsym=${coinSymbol}&tsym=USD`)
     ]);
   loadSelectedCoinData = (coinSymbol: string) => {
     this.selectedCoinPending = true; // Pending
@@ -80,6 +80,7 @@ class Store {
     }
 
     this.allCoinDataPending = true; // Pending
+
     this.getAllCoinData(this.loaded).subscribe(
       (data: CoinUnit[]): void => {
         // Data insert & sort
@@ -172,7 +173,9 @@ class Store {
     if (!this.url[this.urlNumber - 1]) {
       return this.giveMessage('There is no prev page !', 'info');
     }
+    this.scroll[this.urlNumber || 0] = this.getCurrentScroll();
 
+    this.prevOrNext = true;
     this.urlNumber -= 1;
     // First, Change Url, Second, set scroll before url moved, Third, change url array info
     this.router.navigateByUrl(this.url[this.urlNumber || 0]);
@@ -183,25 +186,20 @@ class Store {
       return this.giveMessage('There is no next page !', 'info');
     }
 
+    this.prevOrNext = true;
     this.urlNumber += 1;
     // First, Change Url, Second, set scroll before url moved, Third, change url array info
     this.router.navigateByUrl(this.url[this.urlNumber || 0]);
   };
   // Change URL method
   goToSomeWhere = (location?: string) => {
-    // Bring current url value
-    this.url[this.urlNumber || 0] = this.router.url;
-    this.scroll[this.urlNumber || 0] = this.getCurrentScroll();
-
-    // To Location
-    const nextLocation = location ? location : '/coins';
+    this.url[this.urlNumber || 0] = this.router.url; // Bring current url value
+    this.scroll[this.urlNumber || 0] = this.getCurrentScroll(); // Current scroll value
+    const nextLocation = location ? location : '/coins'; // To Location
 
     if (nextLocation !== this.url[this.urlNumber]) {
-      // Get current scroll value
-      // First, Change Url, Second, set scroll before url moved, Third, change url array info
-      this.router.navigateByUrl(`${nextLocation}`).then(() => {
-        this.setScroll(this.scroll[this.urlNumber || 0]); // set scroll
-
+      return this.router.navigateByUrl(`${nextLocation}`).then(() => {
+        this.prevOrNext = false;
         this.urlNumber += 1; // set current url
         this.url[this.urlNumber || 0] = this.router.url;
         this.url.length = this.urlNumber + 1; // reset next url infomation
@@ -215,16 +213,20 @@ class Store {
   setScroll = (value: [number, number]) => (!value ? console.log('first loading') : this.viewportScroller.scrollToPosition(value));
 
   // Set current device width
-  onResize = (value: any) => {
-    this.browerWidth = value.currentTarget.innerWidth;
-    this.browerHeight = value.currentTarget.innerHeight;
+  setResizeElement = (mainElement: ElementRef) => {
+    this.mainDiv = mainElement;
+    this.mainWidth = mainElement.nativeElement.clientWidth;
+    this.mainHeight = mainElement.nativeElement.clientHeight;
 
-    console.log('width: ' + this.browerWidth);
-    console.log('height: ' + this.browerHeight);
+    console.log('main element width: ' + this.mainWidth);
+    console.log('main element height: ' + this.mainHeight);
+  };
+  // Resize event
+  onResize = () => {
+    this.setResizeElement(this.mainDiv);
   };
 
-  // Toast Message
-  giveMessage = (message: string, type: string) => this.toast[type](message);
+  giveMessage = (message: string, type: string) => this.toast[type](message); // Toast Message
 }
 
 export { Store };
