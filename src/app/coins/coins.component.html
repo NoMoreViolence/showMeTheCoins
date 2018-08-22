@@ -28,38 +28,39 @@
         </th>
       </tr>
     </thead>
-    <tbody class="coins-tbody ">
+    <tbody class="coins-tbody">
+      <tr class="coins-tr" *ngIf="store.sortedCoinData.length === 0">
+        <td class="coins-td">There is no data !</td>
+      </tr>
       <tr class="coins-tr" *ngFor="let coin of store.sortedCoinData" (click)="store.goToSomeWhere( '/coins/' + coin.symbol)">
         <td class="coins-td coins-symbol">
           {{ coin.symbol }}
         </td>
-        <td class="coins-td coins-market-cap ">
+        <td class="coins-td coins-market-cap">
           {{ [coin.quotes.USD.market_cap, 0] | comaToNumber }}
         </td>
-        <td class="coins-td coins-money-usd " [ngClass]="coin.quotes.USD.percent_change_24h | changeToColor ">
+        <td class="coins-td coins-money-usd" [ngClass]="coin.quotes.USD.percent_change_24h | changeToColor">
           {{ [coin.quotes.USD.price, 4] | comaToNumber }}
         </td>
-        <td class="coins-td coins-money-krw " [ngClass]="coin.quotes.KRW.percent_change_24h | changeToColor ">
+        <td class="coins-td coins-money-krw" [ngClass]="coin.quotes.KRW.percent_change_24h | changeToColor">
           {{ [coin.quotes.KRW.price, 1] | comaToNumber }}
         </td>
-        <td class="coins-td coins-day-volume-usd " [ngClass]="coin.quotes.USD.percent_change_24h | changeToColor ">
+        <td class="coins-td coins-day-volume-usd" [ngClass]="coin.quotes.USD.percent_change_24h | changeToColor">
           {{ [coin.quotes.USD.volume_24h, 0] | comaToNumber }}
         </td>
-        <td class="coins-td coins-day-volume-krw ">
+        <td class="coins-td coins-day-volume-krw">
           {{ [coin.quotes.KRW.volume_24h, 0] | comaToNumber }}
         </td>
-        <td class="coins-td coins-hour-percent " [ngClass]="coin.quotes.USD.percent_change_1h | changeToColor ">
+        <td class="coins-td coins-hour-percent" [ngClass]="coin.quotes.USD.percent_change_1h | changeToColor">
           {{ coin.quotes.USD.percent_change_1h }} %
         </td>
-        <td class="coins-td coins-day-percent " [ngClass]="coin.quotes.USD.percent_change_24h | changeToColor ">
+        <td class="coins-td coins-day-percent" [ngClass]="coin.quotes.USD.percent_change_24h | changeToColor">
           {{ coin.quotes.USD.percent_change_24h }} %
         </td>
       </tr>
     </tbody>
   </table>
   <!-- Loading spinner -->
-  <app-loading-spinner *ngIf="store.allCoinDataPending === true "></app-loading-spinner>
-  <button class="show-more-button " [disabled]="!store.showMoreButton " (click)="store.loadAllCoinData()">
-    {{ !store.showMoreButton ? 'No Coins!' : 'Load More...' }}
-  </button>
+  <app-loading-spinner class="loading-bar" *ngIf="store.allCoinDataPending"></app-loading-spinner>
+  <app-more-button class="more-button"></app-more-button>
 </div>
