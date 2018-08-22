@@ -3,11 +3,11 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { ViewportScroller } from '@angular/common';
 import { Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, filter } from 'rxjs/operators';
 import { EventManager } from '@angular/platform-browser';
 import { ToastrService } from 'ngx-toastr';
 
-import { CoinUnit, SelectedCoin } from 'src/interfaces';
+import { CoinUnit, SelectedCoin, SelectedCoinInfo } from 'src/interfaces';
 
 @Injectable()
 class Store {
@@ -25,6 +25,7 @@ class Store {
   public selectedCoinPending = false; // Request pending value
   public selectedCoinSymbol = ''; // Selected Coin symbol data
   public selectedCoinData: SelectedCoin[] = []; // Selected Coin data
+  public selectedCoinInfo: SelectedCoinInfo;
 
   // Url & Scroll
   public urlNumber = 0; // url Number
@@ -54,7 +55,7 @@ class Store {
       this.http.get(`https://min-api.cryptocompare.com/data/top/exchanges/full?fsym=${coinSymbol}&tsym=BTC`),
       this.http.get(`https://min-api.cryptocompare.com/data/top/exchanges/full?fsym=${coinSymbol}&tsym=KRW`),
       this.http.get(`https://min-api.cryptocompare.com/data/top/exchanges/full?fsym=${coinSymbol}&tsym=USD`)
-    ]);
+    ]).pipe(filter((data: SelectedCoin) => data.Response === 'Success'));
   loadSelectedCoinData = (coinSymbol: string) => {
     this.selectedCoinPending = true; // Pending
 
@@ -62,6 +63,8 @@ class Store {
       (value: [SelectedCoin, SelectedCoin, SelectedCoin]) => {
         this.selectedCoinPending = false; // Pending
         this.selectedCoinData = value;
+        this.selectedCoinInfo = this.selectedCoinData.find((data: SelectedCoin) => data.Response === 'Success').Data.CoinInfo;
+        console.log(this.selectedCoinData);
       },
       (err: HttpErrorResponse) => {
         this.selectedCoinPending = false; // Pending
@@ -168,6 +171,7 @@ class Store {
     this.sortedCoinData = this.sortCoinDataByUserChoice(this.sortCoinDataByKey(this.allCoinData, this.searchInput), this.userChoice);
   };
 
+  getCurrentUrl = () => this.router.url;
   // Go to prev page
   goToPrevPage = () => {
     if (!this.url[this.urlNumber - 1]) {
@@ -193,7 +197,7 @@ class Store {
   };
   // Change URL method
   goToSomeWhere = (location?: string) => {
-    this.url[this.urlNumber || 0] = this.router.url; // Bring current url value
+    this.url[this.urlNumber || 0] = this.getCurrentUrl(); // Bring current url value
     this.scroll[this.urlNumber || 0] = this.getCurrentScroll(); // Current scroll value
     const nextLocation = location ? location : '/coins'; // To Location
 
@@ -201,7 +205,7 @@ class Store {
       return this.router.navigateByUrl(`${nextLocation}`).then(() => {
         this.prevOrNext = false;
         this.urlNumber += 1; // set current url
-        this.url[this.urlNumber || 0] = this.router.url;
+        this.url[this.urlNumber || 0] = this.getCurrentUrl();
         this.url.length = this.urlNumber + 1; // reset next url infomation
       });
     }
@@ -210,7 +214,7 @@ class Store {
   // Get current scroll value
   getCurrentScroll = () => this.viewportScroller.getScrollPosition();
   // Setting scroll value
-  setScroll = (value: [number, number]) => (!value ? console.log('first loading') : this.viewportScroller.scrollToPosition(value));
+  setScroll = (value: [number, number]) => (!value ? false : this.viewportScroller.scrollToPosition(value));
 
   // Set current device width
   setResizeElement = (mainElement: ElementRef) => {
