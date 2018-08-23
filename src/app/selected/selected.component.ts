@@ -1,5 +1,6 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Store } from 'src/app/store.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-selected',
@@ -7,7 +8,7 @@ import { Store } from 'src/app/store.service';
   styleUrls: ['./selected.component.scss']
 })
 export class SelectedComponent implements OnInit, AfterViewInit {
-  constructor(private store: Store) {}
+  constructor(private store: Store, private http: HttpClient) {}
 
   ngOnInit() {
     if (this.store.selectedCoinSymbol !== this.store.getCurrentUrl().split('/')[2]) {
@@ -22,5 +23,11 @@ export class SelectedComponent implements OnInit, AfterViewInit {
     } else {
       this.store.setScroll([this.store.mainWidth, this.store.mainHeight]);
     }
+
+    // console.log(
+    //   this.http
+    //     .get('https://github.com/atomiclabs/cryptocurrency-icons/blob/master/svg/color/btc.svg?raw=true')
+    //     .subscribe(data => console.log(data))
+    // );
   }
 }

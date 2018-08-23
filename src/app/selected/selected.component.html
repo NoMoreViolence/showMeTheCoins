@@ -6,29 +6,47 @@
   </div>
   <div *ngIf="!store.selectedCoinPending && store.selectedCoinInfo" class="selected-model">
     <div class="selected-info">
-      <div class="selected-name">
+      <div class="selected-subject">
         <div class="selected-symbol-image">
-          <h1>{{ store.selectedCoinSymbol }}</h1>
-          <img src="https://github.com/cjdowner/cryptocurrency-icons/blob/master/32@2x/icon/{{ store.selectedCoinSymbol.toLowerCase() }}@2x.png?raw=true"
-            onerror="this.src='https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png'">
+          <div class="selected-symbol">
+            <span class="selected-symbol-h1">{{ store.selectedCoinSymbol }}</span>
+            <span class="selected-symbol-h3">{{ store.selectedCoinInfo.Data.CoinInfo.FullName }}</span>
+          </div>
+          <!-- <img src="https://github.com/cjdowner/cryptocurrency-icons/blob/master/32@2x/icon/{{ store.selectedCoinSymbol.toLowerCase() }}@2x.png?raw=true"
+            onerror="this.src='https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png'" /> -->
+          <!-- <img src="https://github.com/atomiclabs/cryptocurrency-icons/blob/master/svg/color/{{ store.selectedCoinSymbol.toLowerCase() }}.svg?raw=true"
+            onerror="this.src='https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png'" /> -->
+          <img [src]="('https://github.com/atomiclabs/cryptocurrency-icons/blob/master/svg/color/btc.svg?raw=true' | svg) | async">
         </div>
-        <h3>{{ store.selectedCoinInfo.Data.CoinInfo.FullName }}</h3>
       </div>
-
+      <div class="selected-profile-logo">
+        <span>Coin Info</span>
+      </div>
       <div class="selected-profile">
         <div class="selected-profile-name">
           <span>Algorithm</span>
+          <span>Proof Type</span>
           <span>Block Number</span>
+          <span>Block Reward</span>
+          <span>Block Time</span>
+          <span>Total Coins Mined</span>
         </div>
         <div class="selected-profile-value">
           <span>{{ store.selectedCoinInfo.Data.CoinInfo.Algorithm }}</span>
-          <span>{{ store.selectedCoinInfo.Data.CoinInfo.BlockNumber }}</span>
+          <span>{{ store.selectedCoinInfo.Data.CoinInfo.ProofType }}</span>
+          <span>{{ [store.selectedCoinInfo.Data.CoinInfo.BlockNumber, 0] | comaToNumber }}</span>
+          <span>{{ [store.selectedCoinInfo.Data.CoinInfo.BlockReward, 2] | comaToNumber }}</span>
+          <span>{{ [store.selectedCoinInfo.Data.CoinInfo.BlockTime, 0] | comaToNumber }}</span>
+          <span>{{ [store.selectedCoinInfo.Data.CoinInfo.TotalCoinsMined, 0] | comaToNumber }}</span>
         </div>
       </div>
     </div>
 
     <div class="selected-data">
-      <div *ngFor="let select of store.selectedCoinData">
+      <div class="selected-data-logo">
+        <span>Current {{ store.selectedCoinSymbol }} Prices</span>
+      </div>
+      <div class="selected-data-model" *ngFor="let select of store.selectedCoinData">
         <div class="coin-name">
           {{ select.Data }}
         </div>

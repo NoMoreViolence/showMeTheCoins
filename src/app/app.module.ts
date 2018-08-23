@@ -6,7 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { routing } from './app.routing';
 
 import { Store } from './store.service';
-import { ChangeToColorPipe, ComaToNumberPipe } from './pipes';
+import { ChangeToColorPipe, ComaToNumberPipe, SvgPipe } from './pipes';
 
 import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
@@ -28,6 +28,7 @@ import { MoreButtonComponent } from './more-button/more-button.component';
   declarations: [
     ChangeToColorPipe,
     ComaToNumberPipe,
+    SvgPipe,
     AppComponent,
     MainComponent,
     SearchBarComponent,

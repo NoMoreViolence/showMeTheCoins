@@ -18,7 +18,7 @@ $desktop: 1440px;
     @media screen and (min-width: $zero) and (max-width: $small-phone) {
       width: 100%;
 
-      .selected-name {
+      .selected-subject {
         width: calc(100% - 2rem);
         padding: 1rem;
 
@@ -26,24 +26,63 @@ $desktop: 1440px;
           width: 100%;
           display: flex;
 
-          h1 {
+          .selected-symbol {
+            display: flex;
+            flex-direction: column;
             flex: 1;
+
+            .selected-symbol-h1 {
+              padding: {
+                top: 1rem;
+                bottom: 1rem;
+              }
+              font: {
+                size: 2rem;
+                weight: bold;
+              }
+            }
+            .selected-symbol-h3 {
+              font: {
+                size: 1.3em;
+                weight: bold;
+              }
+            }
           }
 
           img {
-            width: 80px;
-            height: 80px;
+            width: 100px;
+            height: 100px;
           }
+        }
+      }
+
+      .selected-profile-logo {
+        width: calc(100% - 2rem);
+        padding: {
+          top: 1rem;
+          bottom: 0.5rem;
+          right: 1rem;
+          left: 1rem;
+        }
+        font: {
+          size: 1.1rem;
+          weight: bold;
         }
       }
 
       .selected-profile {
         width: calc(100% - 2rem);
         display: flex;
-        padding: 1rem;
+        padding: {
+          top: 0.5rem;
+          bottom: 1rem;
+          right: 1rem;
+          left: 1rem;
+        }
+        line-height: 1.8rem;
 
         .selected-profile-name {
-          flex: 0.65;
+          flex: 1;
           display: flex;
           flex-direction: column;
         }
@@ -51,6 +90,27 @@ $desktop: 1440px;
           flex: 1;
           display: flex;
           flex-direction: column;
+          span {
+            text-align: right;
+          }
+        }
+      }
+
+      .selected-data {
+        width: calc(100% - 2rem);
+        display: flex;
+        flex-direction: column;
+        padding: 1rem;
+
+        .selected-data-logo {
+          width: calc(100% - 2rem);
+          padding: {
+            bottom: 0.5rem;
+          }
+          font: {
+            size: 1.1rem;
+            weight: bold;
+          }
         }
       }
     }
