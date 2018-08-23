@@ -4,12 +4,13 @@
   <div *ngIf="!store.selectedCoinPending && !store.selectedCoinInfo" class="selected-no-data">
     <h1>{{ store.selectedCoinSymbol }} does not exist !</h1>
   </div>
-  <div *ngIf="!store.selectedCoinPending" class="selected-model">
+  <div *ngIf="!store.selectedCoinPending && store.selectedCoinInfo" class="selected-model">
     <div class="selected-info">
       <div class="selected-name">
         <div class="selected-symbol-image">
           <h1>{{ store.selectedCoinSymbol }}</h1>
-          <img src="https://github.com/cjdowner/cryptocurrency-icons/blob/master/32@2x/icon/{{ store.selectedCoinSymbol.toLowerCase() }}@2x.png?raw=true">
+          <img src="https://github.com/cjdowner/cryptocurrency-icons/blob/master/32@2x/icon/{{ store.selectedCoinSymbol.toLowerCase() }}@2x.png?raw=true"
+            onerror="this.src='https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png'">
         </div>
         <h3>{{ store.selectedCoinInfo.Data.CoinInfo.FullName }}</h3>
       </div>
@@ -17,7 +18,7 @@
       <div class="selected-profile">
         <div class="selected-profile-name">
           <span>Algorithm</span>
-          <span>BlockNumber</span>
+          <span>Block Number</span>
         </div>
         <div class="selected-profile-value">
           <span>{{ store.selectedCoinInfo.Data.CoinInfo.Algorithm }}</span>
