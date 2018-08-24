@@ -1,6 +1,40 @@
+// import { Pipe, PipeTransform, Sanitizer, SecurityContext } from '@angular/core';
+// import { Observable } from 'rxjs';
+// import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+// import { HttpClient, HttpResponse, HttpErrorResponse } from '@angular/common/http';
+// /*
+//  * Raise the value exponentially
+//  * Takes an exponent argument that defaults to 1.
+//  * Usage:
+//  *   value | exponentialStrength:exponent
+//  * Example:
+//  *   {{ 2 | exponentialStrength:10 }}
+//  *   formats to: 1024
+// */
+// // xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
+// // Observable<HttpResponse<string>>
+// @Pipe({ name: 'svgPipe' })
+// export class SvgPipe implements PipeTransform {
+//   constructor(private sanitizer: DomSanitizer, private http: HttpClient) {}
+//   transform(url: string): SafeUrl {
+//     // return Observable.create(observer => {
+//     //   const xhr = new XMLHttpRequest();
+//     //   xhr.open('get', url, true);
+//     //   xhr.onloadend = () => {
+//     //     const theURL = this.sanitizer.bypassSecurityTrustUrl(xhr.responseText);
+//     //     // 'data:image/svg+xml;utf8,'
+//     //     observer.next(theURL);
+//     //   };
+//     //   xhr.send();
+//     // });
+//     return this.sanitizer.bypassSecurityTrustResourceUrl('data:image/svg+xml;' + url);
+//   }
+// }
+
 import { Pipe, PipeTransform, Sanitizer, SecurityContext } from '@angular/core';
 import { Observable } from 'rxjs';
-import { DomSanitizer } from '@angular/platform-browser';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { HttpClient, HttpResponse, HttpErrorResponse } from '@angular/common/http';
 /*
  * Raise the value exponentially
  * Takes an exponent argument that defaults to 1.
@@ -10,18 +44,16 @@ import { DomSanitizer } from '@angular/platform-browser';
  *   {{ 2 | exponentialStrength:10 }}
  *   formats to: 1024
 */
-@Pipe({ name: 'svg' })
+@Pipe({ name: 'svgPipe' })
 export class SvgPipe implements PipeTransform {
-  constructor(private sanitizer: Sanitizer) {}
-  transform(url: string): Observable<string> {
+  constructor(private sanitizer: DomSanitizer, private http: HttpClient) {}
+  transform(url: string): SafeUrl {
     return Observable.create(observer => {
       const xhr = new XMLHttpRequest();
-      xhr.open('get', url);
-      // xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
+      xhr.open('get', url, true);
       xhr.onloadend = () => {
-        const theURL = 'data:image/svg+xml;utf8,' + xhr.responseText;
-        this.sanitizer.sanitize(SecurityContext.URL, theURL);
-        observer.next(theURL);
+        const Data = this.sanitizer.bypassSecurityTrustResourceUrl('data:image/svg+xml;utf8,' + xhr.responseText);
+        observer.next(Data);
       };
       xhr.send();
     });

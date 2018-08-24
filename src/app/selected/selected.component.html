@@ -16,14 +16,26 @@
             onerror="this.src='https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png'" /> -->
           <!-- <img src="https://github.com/atomiclabs/cryptocurrency-icons/blob/master/svg/color/{{ store.selectedCoinSymbol.toLowerCase() }}.svg?raw=true"
             onerror="this.src='https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png'" /> -->
-          <img [src]="('https://github.com/atomiclabs/cryptocurrency-icons/blob/master/svg/color/btc.svg?raw=true' | svg) | async">
+          <!-- <img [src]="('https://raw.githubusercontent.com/atomiclabs/cryptocurrency-icons/master/svg/color/btc.svg' | svgPipe) | async"> -->
+          <!-- <img> {{ [('https://raw.githubusercontent.com/atomiclabs/cryptocurrency-icons/master/svg/color/btc.svg' | svgPipe)
+          | async] }} -->
+          <!-- <object data="{{ 'https://raw.githubusercontent.com/atomiclabs/cryptocurrency-icons/master/svg/color/btc.svg' | svgPipe }}"></object> -->
+          <!-- <img class="temp-img " src="https://raw.githubusercontent.com/atomiclabs/cryptocurrency-icons/master/svg/color/btc.svg "> -->
+
+
+
+
+          <!-- <div class="selected-logo" [innerHTML]="('https://raw.githubusercontent.com/atomiclabs/cryptocurrency-icons/master/svg/color/btc.svg' | svgPipe) | async"></div> -->
+          <!-- <object [data]="('https://raw.githubusercontent.com/atomiclabs/cryptocurrency-icons/master/svg/color/btc.svg' | svgPipe) | async"
+            type="image/svg+xml"></object> -->
+          <img [src]="('https://raw.githubusercontent.com/atomiclabs/cryptocurrency-icons/master/svg/color/btc.svg' | svgPipe) | async">
         </div>
       </div>
-      <div class="selected-profile-logo">
+      <div class="selected-profile-logo ">
         <span>Coin Info</span>
       </div>
-      <div class="selected-profile">
-        <div class="selected-profile-name">
+      <div class="selected-profile ">
+        <div class="selected-profile-name ">
           <span>Algorithm</span>
           <span>Proof Type</span>
           <span>Block Number</span>
@@ -31,7 +43,7 @@
           <span>Block Time</span>
           <span>Total Coins Mined</span>
         </div>
-        <div class="selected-profile-value">
+        <div class="selected-profile-value ">
           <span>{{ store.selectedCoinInfo.Data.CoinInfo.Algorithm }}</span>
           <span>{{ store.selectedCoinInfo.Data.CoinInfo.ProofType }}</span>
           <span>{{ [store.selectedCoinInfo.Data.CoinInfo.BlockNumber, 0] | comaToNumber }}</span>
@@ -42,12 +54,12 @@
       </div>
     </div>
 
-    <div class="selected-data">
-      <div class="selected-data-logo">
+    <div class="selected-data ">
+      <div class="selected-data-logo ">
         <span>Current {{ store.selectedCoinSymbol }} Prices</span>
       </div>
-      <div class="selected-data-model" *ngFor="let select of store.selectedCoinData">
-        <div class="coin-name">
+      <div class="selected-data-model " *ngFor="let select of store.selectedCoinData ">
+        <div class="coin-name ">
           {{ select.Data }}
         </div>
       </div>
