@@ -11,15 +11,11 @@ import { Pipe, PipeTransform } from '@angular/core';
 @Pipe({ name: 'comaToNumber' })
 export class ComaToNumberPipe implements PipeTransform {
   transform(value: [number, number]): string {
-    if (value[0] % 1 === 0) {
-      return value[0].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-    }
+    const number = Number.parseFloat(value[0].toString()).toFixed(value[1]); // Create Number
 
-    // Int Number: numberValue[0], Float Number: numberValue[1]
-    const numberValue = value[0].toString().split('.');
+    const numberValue = number.split('.'); // Int Number: numberValue[0], Float Number: numberValue[1]
 
-    // Coma Int Value
-    const comaIntValue = numberValue[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    const comaIntValue = numberValue[0].replace(/\B(?=(\d{3})+(?!\d))/g, ','); // Coma Int Value
 
     // If there is float number expression
     if (value[1] !== 0) {

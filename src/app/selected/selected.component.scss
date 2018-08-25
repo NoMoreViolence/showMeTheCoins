@@ -15,12 +15,16 @@ $desktop: 1440px;
   align-items: center;
 
   .selected-model {
-    @media screen and (min-width: $zero) and (max-width: $small-phone) {
-      width: 100%;
+    @media screen and (min-width: $zero) and (max-width: $big-phone) {
+      width: calc(100% - 2rem);
+      padding: 1rem;
 
       .selected-subject {
-        width: calc(100% - 2rem);
-        padding: 1rem;
+        width: 100%;
+        padding: {
+          top: 1rem;
+          bottom: 1rem;
+        }
 
         .selected-symbol-image {
           width: 100%;
@@ -57,12 +61,10 @@ $desktop: 1440px;
       }
 
       .selected-profile-logo {
-        width: calc(100% - 2rem);
+        width: 100%;
         padding: {
           top: 1rem;
           bottom: 0.5rem;
-          right: 1rem;
-          left: 1rem;
         }
         font: {
           size: 1.1rem;
@@ -71,13 +73,11 @@ $desktop: 1440px;
       }
 
       .selected-profile {
-        width: calc(100% - 2rem);
+        width: 100%;
         display: flex;
         padding: {
           top: 0.5rem;
           bottom: 1rem;
-          right: 1rem;
-          left: 1rem;
         }
         line-height: 1.8rem;
 
@@ -97,13 +97,15 @@ $desktop: 1440px;
       }
 
       .selected-data {
-        width: calc(100% - 2rem);
+        width: 100%;
         display: flex;
         flex-direction: column;
-        padding: 1rem;
-
+        padding: {
+          top: 1rem;
+          bottom: 1rem;
+        }
         .selected-data-logo {
-          width: calc(100% - 2rem);
+          width: 100%;
           padding: {
             bottom: 0.5rem;
           }
@@ -112,35 +114,1009 @@ $desktop: 1440px;
             weight: bold;
           }
         }
+
+        .selected-data-form {
+          width: 100%;
+          padding: {
+            top: 0.5rem;
+            bottom: 0.5rem;
+          }
+
+          .selected-data-symbol {
+            width: 100%;
+            padding: {
+              top: 0.5rem;
+              bottom: 0.5rem;
+            }
+            font: {
+              size: 1.1rem;
+              weight: 500;
+            }
+          }
+
+          .selected-data-exchanges {
+            width: 100%;
+
+            .selected-data-exchange-head {
+              width: 100%;
+
+              .selected-data-exchange-tr {
+                width: 100%;
+                padding: {
+                  bottom: 0.5rem;
+                }
+
+                th {
+                  padding: 0.25rem;
+                }
+                .selected-data-exchange-market {
+                  text-align: left;
+                }
+
+                .selected-data-exchange-price {
+                  text-align: right;
+                }
+
+                .selected-data-exchange-day-per {
+                  text-align: right;
+                }
+
+                .selected-data-exchange-price-high {
+                  display: none;
+                }
+
+                .selected-data-exchange-price-low {
+                  display: none;
+                }
+
+                .selected-data-exchange-change {
+                  display: none;
+                }
+              }
+            }
+
+            .selected-data-exchange-body {
+              width: 100%;
+
+              .selected-data-exchange-tr {
+                width: 100%;
+                padding: {
+                  bottom: 0.5rem;
+                }
+
+                td {
+                  padding: 0.25rem;
+                }
+
+                .selected-data-exchange-market {
+                  text-align: left;
+                }
+
+                .selected-data-exchange-price {
+                  text-align: right;
+                }
+
+                .selected-data-exchange-day-per {
+                  text-align: right;
+                }
+
+                .selected-data-exchange-price-high {
+                  display: none;
+                }
+
+                .selected-data-exchange-price-low {
+                  display: none;
+                }
+
+                .selected-data-exchange-change {
+                  display: none;
+                }
+              }
+            }
+          }
+        }
       }
     }
 
-    @media screen and (min-width: $small-phone + 1px) and (max-width: $middle-phone) {
-      width: 100%;
-    }
-
-    @media screen and (min-width: $middle-phone + 1px) and (max-width: $big-phone) {
-      width: 100%;
-    }
-
     @media screen and (min-width: $big-phone + 1px) and (max-width: $tablet) {
-      width: 100%;
+      width: calc(100% - 2rem);
+      padding: 1rem;
+
+      .selected-subject {
+        width: 100%;
+        padding: {
+          top: 1rem;
+          bottom: 1rem;
+        }
+
+        .selected-symbol-image {
+          width: 100%;
+          display: flex;
+
+          .selected-symbol {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+
+            .selected-symbol-h1 {
+              padding: {
+                top: 1rem;
+                bottom: 1rem;
+              }
+              font: {
+                size: 2rem;
+                weight: bold;
+              }
+            }
+            .selected-symbol-h3 {
+              font: {
+                size: 1.3em;
+                weight: bold;
+              }
+            }
+          }
+          img {
+            width: 100px;
+            height: 100px;
+          }
+        }
+      }
+
+      .selected-profile-logo {
+        width: 100%;
+        padding: {
+          top: 1rem;
+          bottom: 0.5rem;
+        }
+        font: {
+          size: 1.1rem;
+          weight: bold;
+        }
+      }
+
+      .selected-profile {
+        width: 100%;
+        display: flex;
+        padding: {
+          top: 0.5rem;
+          bottom: 1rem;
+        }
+        line-height: 1.8rem;
+
+        .selected-profile-name {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+        }
+        .selected-profile-value {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          span {
+            text-align: right;
+          }
+        }
+      }
+
+      .selected-data {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        padding: {
+          top: 1rem;
+          bottom: 1rem;
+        }
+        .selected-data-logo {
+          width: 100%;
+          padding: {
+            bottom: 0.5rem;
+          }
+          font: {
+            size: 1.1rem;
+            weight: bold;
+          }
+        }
+
+        .selected-data-form {
+          width: 100%;
+          padding: {
+            top: 0.5rem;
+            bottom: 0.5rem;
+          }
+
+          .selected-data-symbol {
+            width: 100%;
+            padding: {
+              top: 0.5rem;
+              bottom: 0.5rem;
+            }
+            font: {
+              size: 1.1rem;
+              weight: 500;
+            }
+          }
+
+          .selected-data-exchanges {
+            width: 100%;
+
+            .selected-data-exchange-head {
+              width: 100%;
+
+              .selected-data-exchange-tr {
+                width: 100%;
+                padding: {
+                  bottom: 0.5rem;
+                }
+
+                th {
+                  padding: 0.25rem;
+                }
+                .selected-data-exchange-market {
+                  width: 25%;
+                  text-align: left;
+                }
+
+                .selected-data-exchange-price {
+                  width: 25%;
+                  text-align: right;
+                }
+
+                .selected-data-exchange-price-high {
+                  width: 25%;
+                  text-align: right;
+                }
+
+                .selected-data-exchange-day-per {
+                  width: 25%;
+                  text-align: right;
+                }
+
+                .selected-data-exchange-price-low {
+                  display: none;
+                }
+
+                .selected-data-exchange-change {
+                  display: none;
+                }
+              }
+            }
+
+            .selected-data-exchange-body {
+              width: 100%;
+
+              .selected-data-exchange-tr {
+                width: 100%;
+                padding: {
+                  bottom: 0.5rem;
+                }
+
+                td {
+                  padding: 0.25rem;
+                }
+
+                .selected-data-exchange-market {
+                  width: 25%;
+                  text-align: left;
+                }
+
+                .selected-data-exchange-price {
+                  width: 25%;
+                  text-align: right;
+                }
+
+                .selected-data-exchange-price-high {
+                  width: 25%;
+                  text-align: right;
+                }
+
+                .selected-data-exchange-day-per {
+                  width: 25%;
+                  text-align: right;
+                }
+
+                .selected-data-exchange-price-low {
+                  display: none;
+                }
+
+                .selected-data-exchange-change {
+                  display: none;
+                }
+              }
+            }
+          }
+        }
+      }
     }
 
     @media screen and (min-width: $tablet + 1px) and (max-width: $labtop) {
       width: 720px;
+      padding: 1rem;
+
+      .selected-subject {
+        width: 100%;
+        padding: {
+          top: 1rem;
+          bottom: 1rem;
+        }
+
+        .selected-symbol-image {
+          width: 100%;
+          display: flex;
+
+          .selected-symbol {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+
+            .selected-symbol-h1 {
+              padding: {
+                top: 1rem;
+                bottom: 1rem;
+              }
+              font: {
+                size: 4rem;
+                weight: bold;
+              }
+            }
+            .selected-symbol-h3 {
+              font: {
+                size: 1.5em;
+                weight: bold;
+              }
+            }
+          }
+          img {
+            width: 150px;
+            height: 150px;
+          }
+        }
+      }
+
+      .selected-profile-logo {
+        width: 100%;
+        padding: {
+          top: 1rem;
+          bottom: 0.5rem;
+        }
+        font: {
+          size: 1.2rem;
+          weight: bold;
+        }
+      }
+
+      .selected-profile {
+        width: 100%;
+        display: flex;
+        padding: {
+          top: 0.5rem;
+          bottom: 1rem;
+        }
+        line-height: 2rem;
+        font: {
+          size: 1.1rem;
+        }
+
+        .selected-profile-name {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+        }
+        .selected-profile-value {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          span {
+            text-align: right;
+          }
+        }
+      }
+
+      .selected-data {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        padding: {
+          top: 1rem;
+          bottom: 1rem;
+        }
+        .selected-data-logo {
+          width: 100%;
+          padding: {
+            bottom: 0.5rem;
+          }
+          font: {
+            size: 1.2rem;
+            weight: bold;
+          }
+        }
+
+        .selected-data-form {
+          width: 100%;
+          padding: {
+            top: 0.5rem;
+            bottom: 0.5rem;
+          }
+
+          .selected-data-symbol {
+            width: 100%;
+            padding: {
+              top: 0.5rem;
+              bottom: 0.5rem;
+            }
+            font: {
+              size: 1.1rem;
+              weight: 500;
+            }
+          }
+
+          .selected-data-exchanges {
+            width: 100%;
+
+            .selected-data-exchange-head {
+              width: 100%;
+
+              .selected-data-exchange-tr {
+                width: 100%;
+                padding: {
+                  bottom: 0.5rem;
+                }
+
+                th {
+                  padding: 0.25rem;
+                  font: {
+                    size: 1.1rem;
+                    weight: 300;
+                  }
+                }
+                .selected-data-exchange-market {
+                  width: 20%;
+                  text-align: left;
+                }
+
+                .selected-data-exchange-price {
+                  width: 20%;
+                  text-align: right;
+                }
+
+                .selected-data-exchange-price-high {
+                  width: 20%;
+                  text-align: right;
+                }
+
+                .selected-data-exchange-price-low {
+                  width: 20%;
+                  text-align: right;
+                }
+
+                .selected-data-exchange-day-per {
+                  width: 20%;
+                  text-align: right;
+                }
+
+                .selected-data-exchange-change {
+                  display: none;
+                }
+              }
+            }
+
+            .selected-data-exchange-body {
+              width: 100%;
+
+              .selected-data-exchange-tr {
+                width: 100%;
+                padding: {
+                  bottom: 0.5rem;
+                }
+
+                td {
+                  padding: 0.25rem;
+                  font: {
+                    size: 1.1rem;
+                    weight: 300;
+                  }
+                }
+
+                .selected-data-exchange-market {
+                  width: 20%;
+                  text-align: left;
+                }
+
+                .selected-data-exchange-price {
+                  width: 20%;
+                  text-align: right;
+                }
+
+                .selected-data-exchange-price-high {
+                  width: 20%;
+                  text-align: right;
+                }
+
+                .selected-data-exchange-price-low {
+                  width: 20%;
+                  text-align: right;
+                }
+
+                .selected-data-exchange-day-per {
+                  width: 20%;
+                  text-align: right;
+                }
+
+                .selected-data-exchange-change {
+                  display: none;
+                }
+              }
+            }
+          }
+        }
+      }
     }
 
     @media screen and (min-width: $labtop + 1px) and (max-width: $desktop) {
       width: 900px;
+      padding: 1rem;
+
+      .selected-subject {
+        width: 100%;
+        padding: {
+          top: 1rem;
+          bottom: 1rem;
+        }
+
+        .selected-symbol-image {
+          width: 100%;
+          display: flex;
+
+          .selected-symbol {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+
+            .selected-symbol-h1 {
+              padding: {
+                top: 1rem;
+                bottom: 1rem;
+              }
+              font: {
+                size: 5rem;
+                weight: bold;
+              }
+            }
+            .selected-symbol-h3 {
+              font: {
+                size: 2.5em;
+                weight: bold;
+              }
+            }
+          }
+          img {
+            width: 200px;
+            height: 200px;
+          }
+        }
+      }
+
+      .selected-profile-logo {
+        width: 100%;
+        padding: {
+          top: 1rem;
+          bottom: 0.5rem;
+        }
+        font: {
+          size: 2rem;
+          weight: bold;
+        }
+      }
+
+      .selected-profile {
+        width: 100%;
+        display: flex;
+        padding: {
+          top: 0.5rem;
+          bottom: 1rem;
+        }
+        line-height: 2rem;
+        font: {
+          size: 1.2rem;
+          weight: 300;
+        }
+
+        .selected-profile-name {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+        }
+        .selected-profile-value {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          span {
+            text-align: right;
+          }
+        }
+      }
+
+      .selected-data {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        padding: {
+          top: 1rem;
+          bottom: 1rem;
+        }
+
+        .selected-data-logo {
+          width: 100%;
+          padding: {
+            bottom: 0.5rem;
+          }
+          font: {
+            size: 2rem;
+            weight: bold;
+          }
+        }
+
+        .selected-data-form {
+          width: 100%;
+          padding: {
+            top: 0.5rem;
+            bottom: 0.5rem;
+          }
+
+          .selected-data-symbol {
+            width: 100%;
+            padding: {
+              top: 0.5rem;
+              bottom: 0.5rem;
+            }
+            font: {
+              size: 1.4rem;
+              weight: 500;
+            }
+          }
+
+          .selected-data-exchanges {
+            width: 100%;
+
+            .selected-data-exchange-head {
+              width: 100%;
+
+              .selected-data-exchange-tr {
+                width: 100%;
+                padding: {
+                  bottom: 0.5rem;
+                }
+
+                th {
+                  padding: 0.25rem;
+                  font: {
+                    size: 1.2rem;
+                    weight: 300;
+                  }
+                }
+
+                .selected-data-exchange-market {
+                  width: 15%;
+                  text-align: left;
+                }
+
+                .selected-data-exchange-price {
+                  width: 25%;
+                  text-align: right;
+                }
+
+                .selected-data-exchange-price-high {
+                  width: 15%;
+                  text-align: right;
+                }
+
+                .selected-data-exchange-price-low {
+                  width: 15%;
+                  text-align: right;
+                }
+
+                .selected-data-exchange-change {
+                  width: 15%;
+                  text-align: right;
+                }
+
+                .selected-data-exchange-day-per {
+                  width: 15%;
+                  text-align: right;
+                }
+              }
+            }
+
+            .selected-data-exchange-body {
+              width: 100%;
+
+              .selected-data-exchange-tr {
+                width: 100%;
+                padding: {
+                  bottom: 0.5rem;
+                }
+
+                td {
+                  padding: 0.25rem;
+                  font: {
+                    size: 1.2rem;
+                    weight: 300;
+                  }
+                }
+
+                .selected-data-exchange-market {
+                  width: 15%;
+                  text-align: left;
+                }
+
+                .selected-data-exchange-price {
+                  width: 25%;
+                  text-align: right;
+                }
+
+                .selected-data-exchange-price-high {
+                  width: 15%;
+                  text-align: right;
+                }
+
+                .selected-data-exchange-price-low {
+                  width: 15%;
+                  text-align: right;
+                }
+
+                .selected-data-exchange-change {
+                  width: 15%;
+                  text-align: right;
+                }
+
+                .selected-data-exchange-day-per {
+                  width: 15%;
+                  text-align: right;
+                }
+              }
+            }
+          }
+        }
+      }
     }
 
     @media screen and (min-width: $desktop + 1px) {
       width: 1050px;
+      padding: 1rem;
+
+      .selected-subject {
+        width: 100%;
+        padding: {
+          top: 1rem;
+          bottom: 1rem;
+        }
+
+        .selected-symbol-image {
+          width: 100%;
+          display: flex;
+
+          .selected-symbol {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+
+            .selected-symbol-h1 {
+              padding: {
+                top: 1rem;
+                bottom: 1rem;
+              }
+              font: {
+                size: 5rem;
+                weight: bold;
+              }
+            }
+            .selected-symbol-h3 {
+              font: {
+                size: 2.5em;
+                weight: bold;
+              }
+            }
+          }
+          img {
+            width: 200px;
+            height: 200px;
+          }
+        }
+      }
+
+      .selected-profile-logo {
+        width: 100%;
+        padding: {
+          top: 1rem;
+          bottom: 0.5rem;
+        }
+        font: {
+          size: 2rem;
+          weight: bold;
+        }
+      }
+
+      .selected-profile {
+        width: 100%;
+        display: flex;
+        padding: {
+          top: 0.5rem;
+          bottom: 1rem;
+        }
+        line-height: 2rem;
+        font: {
+          size: 1.2rem;
+          weight: 300;
+        }
+
+        .selected-profile-name {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+        }
+        .selected-profile-value {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          span {
+            text-align: right;
+          }
+        }
+      }
+
+      .selected-data {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        padding: {
+          top: 1rem;
+          bottom: 1rem;
+        }
+
+        .selected-data-logo {
+          width: 100%;
+          padding: {
+            bottom: 0.5rem;
+          }
+          font: {
+            size: 2rem;
+            weight: bold;
+          }
+        }
+
+        .selected-data-form {
+          width: 100%;
+          padding: {
+            top: 0.5rem;
+            bottom: 0.5rem;
+          }
+
+          .selected-data-symbol {
+            width: 100%;
+            padding: {
+              top: 0.5rem;
+              bottom: 0.5rem;
+            }
+            font: {
+              size: 1.4rem;
+              weight: 500;
+            }
+          }
+
+          .selected-data-exchanges {
+            width: 100%;
+
+            .selected-data-exchange-head {
+              width: 100%;
+
+              .selected-data-exchange-tr {
+                width: 100%;
+                padding: {
+                  bottom: 0.5rem;
+                }
+
+                th {
+                  padding: 0.25rem;
+                  font: {
+                    size: 1.2rem;
+                    weight: 300;
+                  }
+                }
+
+                .selected-data-exchange-market {
+                  width: 15%;
+                  text-align: left;
+                }
+
+                .selected-data-exchange-price {
+                  width: 25%;
+                  text-align: right;
+                }
+
+                .selected-data-exchange-price-high {
+                  width: 15%;
+                  text-align: right;
+                }
+
+                .selected-data-exchange-price-low {
+                  width: 15%;
+                  text-align: right;
+                }
+
+                .selected-data-exchange-change {
+                  width: 15%;
+                  text-align: right;
+                }
+
+                .selected-data-exchange-day-per {
+                  width: 15%;
+                  text-align: right;
+                }
+              }
+            }
+
+            .selected-data-exchange-body {
+              width: 100%;
+
+              .selected-data-exchange-tr {
+                width: 100%;
+                padding: {
+                  bottom: 0.5rem;
+                }
+
+                td {
+                  padding: 0.25rem;
+                  font: {
+                    size: 1.2rem;
+                    weight: 200;
+                  }
+                }
+
+                .selected-data-exchange-market {
+                  width: 15%;
+                  text-align: left;
+                }
+
+                .selected-data-exchange-price {
+                  width: 25%;
+                  text-align: right;
+                }
+
+                .selected-data-exchange-price-high {
+                  width: 15%;
+                  text-align: right;
+                }
+
+                .selected-data-exchange-price-low {
+                  width: 15%;
+                  text-align: right;
+                }
+
+                .selected-data-exchange-change {
+                  width: 15%;
+                  text-align: right;
+                }
+
+                .selected-data-exchange-day-per {
+                  width: 15%;
+                  text-align: right;
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 
   .loading-bar {
     width: 100%;
   }
+}
+
+.red {
+  color: red;
+}
+
+.blue {
+  color: blue;
 }

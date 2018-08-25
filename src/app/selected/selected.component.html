@@ -28,7 +28,8 @@
           <!-- <div class="selected-logo" [innerHTML]="('https://raw.githubusercontent.com/atomiclabs/cryptocurrency-icons/master/svg/color/btc.svg' | svgPipe) | async"></div> -->
           <!-- <object [data]="('https://raw.githubusercontent.com/atomiclabs/cryptocurrency-icons/master/svg/color/btc.svg' | svgPipe) | async"
             type="image/svg+xml"></object> -->
-          <img [src]="('https://raw.githubusercontent.com/atomiclabs/cryptocurrency-icons/master/svg/color/btc.svg' | svgPipe) | async">
+          <img [src]="('https://raw.githubusercontent.com/atomiclabs/cryptocurrency-icons/master/svg/color/' + store.selectedCoinSymbol.toLowerCase() + '.svg' | svg) | async"
+            onerror="this.src='https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png'">
         </div>
       </div>
       <div class="selected-profile-logo ">
@@ -54,14 +55,49 @@
       </div>
     </div>
 
-    <div class="selected-data ">
-      <div class="selected-data-logo ">
-        <span>Current {{ store.selectedCoinSymbol }} Prices</span>
+    <div class="selected-data">
+      <div class="selected-data-logo">
+        <span>Current {{ store.selectedCoinSymbol }} Prics</span>
       </div>
-      <div class="selected-data-model " *ngFor="let select of store.selectedCoinData ">
-        <div class="coin-name ">
-          {{ select.Data }}
+      <div class="selected-data-form" *ngFor="let select of store.selectedCoinData">
+        <div class="selected-data-symbol">
+          <span>{{ store.selectedCoinSymbol }}/{{ select.Data.AggregatedData.TOSYMBOL }} Prices</span>
         </div>
+        <table class="selected-data-exchanges">
+          <thead class="selected-data-exchange-head">
+            <tr class="selected-data-exchange-tr">
+              <th class="selected-data-exchange-market">Market</th>
+              <th class="selected-data-exchange-price">Price</th>
+              <th class="selected-data-exchange-price-high">High Price</th>
+              <th class="selected-data-exchange-price-low">Low Price</th>
+              <th class="selected-data-exchange-change">Change</th>
+              <th class="selected-data-exchange-day-per">Day Per</th>
+            </tr>
+          </thead>
+          <tbody class="selected-data-exchange-body">
+            <tr class="selected-data-exchange-tr" *ngFor="let exchange of select.Data.Exchanges" [ngClass]="exchange.CHANGE24HOUR | changeToColor">
+              <td class="selected-data-exchange-market">{{ exchange.MARKET }}</td>
+              <td class="selected-data-exchange-price">{{ [exchange.PRICE, (select.Data.AggregatedData.TOSYMBOL === 'BTC'
+                ? 7 : select.Data.AggregatedData.TOSYMBOL === 'KRW' ? exchange.PRICE > 10 ? 0 : 1 : 4)] | comaToNumber }}</td>
+              <td class="selected-data-exchange-price-high">{{ [exchange.HIGH24HOUR, (select.Data.AggregatedData.TOSYMBOL
+                === 'BTC' ? 7 : select.Data.AggregatedData.TOSYMBOL === 'KRW' ? exchange.PRICE > 10 ? 0 : 1 : 4)] | comaToNumber
+                }}
+              </td>
+              <td class="selected-data-exchange-price-low">{{ [exchange.LOW24HOUR, (select.Data.AggregatedData.TOSYMBOL ===
+                'BTC' ? 7 : select.Data.AggregatedData.TOSYMBOL === 'KRW' ? exchange.PRICE > 10 ? 0 : 1 : 4)] | comaToNumber
+                }}
+              </td>
+              <td class="selected-data-exchange-change">{{ [exchange.CHANGE24HOUR, (select.Data.AggregatedData.TOSYMBOL ===
+                'BTC' ? 7 : select.Data.AggregatedData.TOSYMBOL === 'KRW' ? exchange.PRICE > 10 ? 0 : 1 : 4)] | comaToNumber
+                }}
+              </td>
+              <td class="selected-data-exchange-day-per">{{ [exchange.OPEN24HOUR, exchange.PRICE] | percent }}%</td>
+              <!-- <td class="selected-data-exchange-day-per">{{ (exchange.CHANGE24HOUR > 0 ? 100 - (exchange.OPEN24HOUR / exchange.PRICE
+                * 100).toFixed(1) : exchange.CHANGE24HOUR
+                < 0 ? (exchange.PRICE / exchange.OPEN24HOUR * 100).toFixed(1) : 0).toString() }}%</td> -->
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>

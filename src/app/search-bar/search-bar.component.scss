@@ -14,11 +14,11 @@
   text-align: center;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   /* tran */
-  transition: all 0.3s cubic-bezier(.64, .09, .08, 1);
-  -webkit-transition: all 0.3s cubic-bezier(.64, .09, .08, 1);
-  -moz-transition: all 0.3s cubic-bezier(.64, .09, .08, 1);
-  -ms-transition: all 0.3s cubic-bezier(.64, .09, .08, 1);
-  -o-transition: all 0.3s cubic-bezier(.64, .09, .08, 1);
+  transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+  -webkit-transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+  -moz-transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+  -ms-transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+  -o-transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
   /* tran */
   outline: none;
   border-right: none;
@@ -88,7 +88,7 @@
 /* laptop */
 @media only screen and (min-width: 769px) and (max-width: 1024px) {
   .search-bar {
-    width: 60%;
+    width: 720px;
     margin-top: 1.5rem;
   }
 
@@ -100,7 +100,7 @@
 /* default desktop */
 @media only screen and (min-width: 1025px) and (max-width: 1440px) {
   .search-bar {
-    width: 60%;
+    width: 900px;
     margin-top: 1.5rem;
   }
 
@@ -112,7 +112,7 @@
 /* for 4K display */
 @media only screen and (min-width: 1441px) {
   .search-bar {
-    width: 60%;
+    width: 1050px;
     margin-top: 1.5rem;
   }
 

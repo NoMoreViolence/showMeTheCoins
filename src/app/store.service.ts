@@ -65,7 +65,7 @@ class Store {
         this.selectedCoinPending = false; // Pending
         this.selectedCoinData = value.filter((data: SelectedCoin) => data.Response === 'Success'); // Data in
         this.selectedCoinInfo = this.selectedCoinData.find((data: SelectedCoin) => data.Response === 'Success'); // Coin info in
-        console.log(this.selectedCoinInfo);
+        console.log(this.selectedCoinData);
       },
       (err: HttpErrorResponse) => {
         this.selectedCoinPending = false; // Pending

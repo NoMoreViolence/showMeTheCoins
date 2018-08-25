@@ -17,17 +17,16 @@
 // export class SvgPipe implements PipeTransform {
 //   constructor(private sanitizer: DomSanitizer, private http: HttpClient) {}
 //   transform(url: string): SafeUrl {
-//     // return Observable.create(observer => {
-//     //   const xhr = new XMLHttpRequest();
-//     //   xhr.open('get', url, true);
-//     //   xhr.onloadend = () => {
-//     //     const theURL = this.sanitizer.bypassSecurityTrustUrl(xhr.responseText);
-//     //     // 'data:image/svg+xml;utf8,'
-//     //     observer.next(theURL);
-//     //   };
-//     //   xhr.send();
-//     // });
-//     return this.sanitizer.bypassSecurityTrustResourceUrl('data:image/svg+xml;' + url);
+//     return Observable.create(observer => {
+//       const xhr = new XMLHttpRequest();
+//       xhr.open('get', url, true);
+//       xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
+//       xhr.onloadend = () => {
+//         const theURL = this.sanitizer.bypassSecurityTrustUrl('data:image/svg+xml;utf8,' + xhr.responseText);
+//         observer.next(theURL);
+//       };
+//       xhr.send();
+//     });
 //   }
 // }
 
@@ -45,7 +44,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
  *   formats to: 1024
 */
 
-@Pipe({ name: 'svgPipe' })
+@Pipe({ name: 'svg' })
 export class SvgPipe implements PipeTransform {
   constructor(private sanitizer: DomSanitizer, private http: HttpClient) {}
   transform(url: string): SafeUrl {

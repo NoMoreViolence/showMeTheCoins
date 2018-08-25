@@ -6,29 +6,28 @@ import { HttpClientModule } from '@angular/common/http';
 import { routing } from './app.routing';
 
 import { Store } from './store.service';
-import { ChangeToColorPipe, ComaToNumberPipe, SvgPipe } from './pipes';
+import { ChangeToColorPipe, ComaToNumberPipe, SvgPipe, PercentPipe } from './pipes';
 
 import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { NavigateComponent } from './navigate/navigate.component';
-import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 import { CoinsComponent } from './coins/coins.component';
 import { SelectedComponent } from './selected/selected.component';
-import { CoinModelComponent } from './coin-model/coin-model.component';
 import { UnderComponent } from './under/under.component';
-import { NotFoundComponent } from './not-found/not-found.component';
+import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
+import { MoreButtonComponent } from './more-button/more-button.component';
 
 // Toast
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-import { MoreButtonComponent } from './more-button/more-button.component';
 
 @NgModule({
   declarations: [
     ChangeToColorPipe,
     ComaToNumberPipe,
     SvgPipe,
+    PercentPipe,
     AppComponent,
     MainComponent,
     SearchBarComponent,
@@ -36,9 +35,7 @@ import { MoreButtonComponent } from './more-button/more-button.component';
     LoadingSpinnerComponent,
     CoinsComponent,
     SelectedComponent,
-    CoinModelComponent,
     UnderComponent,
-    NotFoundComponent,
     MoreButtonComponent
   ],
   imports: [BrowserModule, RouterModule, routing, HttpClientModule, BrowserAnimationsModule, ToastrModule.forRoot()],

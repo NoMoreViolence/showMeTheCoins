@@ -15,10 +15,16 @@ export class CoinsComponent implements OnInit, AfterViewInit {
       : '';
 
   ngOnInit() {
-    this.store.loaded === 1 ? this.store.loadAllCoinData('환영합니다 !') : console.log('main page loaded');
+    if (this.store.loaded) {
+      this.store.loadAllCoinData('환영합니다');
+    }
   }
 
   ngAfterViewInit() {
-    this.store.setScroll(this.store.scroll[this.store.urlNumber || 0]);
+    if (this.store.urlNumber !== 0) {
+      this.store.setScroll([this.store.mainWidth, this.store.mainHeight]);
+    } else {
+      this.store.setScroll(this.store.scroll[this.store.urlNumber || 0]);
+    }
   }
 }
